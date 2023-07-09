@@ -1,5 +1,5 @@
 import openai
-openai.api_key = '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'  # Replace with your OpenAI API key
+openai.api_key = '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'  # Replace with your OpenAI API key
 language = 'en'
 
 def get_chatgpt_response(query):
@@ -13,3 +13,5 @@ def get_chatgpt_response(query):
     )
 
     return response.choices[0].text.strip()
+
+print(get_chatgpt_response("What's the weather like today?"))

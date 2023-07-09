@@ -7,7 +7,7 @@ set_api_key("67f3b63436afb1d0a558a87d22d05a40")
 voice = clone(
     name="Voice Name",
     description="An old American male voice with a slight hoarseness in his throat. Perfect for news.",
-    files=["./sample1.mp3", "./sample2.mp3"],
+    files=["C:/Users/user/OneDrive - LINDEMANNLAW/audio Datein/MP3 Datein/Voices/aufnahme app/Elias (2).m4a"],
 )
 
 audio = generate(text="Some very long text to be read by the voice", voice=voice)
