@@ -1,6 +1,7 @@
 from languageProcessing import get_chatgpt_response
 from SpeechToText import listen
 from TextToVideo import Speak
+import os
 
 NUM = 0
 
@@ -13,5 +14,7 @@ def main():
             print(f"Assistant: {response}")
             Speak(response, NUM)
             NUM += 1
+            if NUM > 1:
+                os.remove(f'output{NUM-2}.mp3')
 
 main()

@@ -9,7 +9,7 @@ def listen():
     r = sr.Recognizer()
     with sr.Microphone() as source:
         print("Listening...")
-        r.pause_threshold = 2 #Adjust the pause threshold according to your environment
+        r.pause_threshold = 1 #Adjust the pause threshold according to your environment
         audio = r.listen(source)
 
     try:

@@ -1,5 +1,5 @@
 import openai
-openai.api_key = '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'  # Replace with your OpenAI API key
+openai.api_key = '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'  # Replace with your OpenAI API key
 language = 'en'
 
 def get_chatgpt_response(query):
