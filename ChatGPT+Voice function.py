@@ -56,7 +56,7 @@ def listen():
 
 def get_chatgpt_response(query):
     response = openai.Completion.create(
-        engine='text-davinci-003',
+        engine='gpt-3.5-turbo',
         prompt=query,
         max_tokens=1000,
         n=1,
