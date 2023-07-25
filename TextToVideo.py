@@ -2,6 +2,9 @@ import requests
 from requests.auth import HTTPBasicAuth
 import json
 import time
+from urllib.parse import urlparse
+from makePresignedURL import create_presigned_url
+
 
 USERNAME = 'ZWxpYXNsaW5kZW1hbm4wNUBnbWFpbC5jb20'
 PASSWORD = 'SiNSSx9Bp22XWlrHHmx2X'
@@ -57,10 +60,22 @@ url = f"https://api.d-id.com/talks/{talk_id}"  # replace with the correct URL
 #for some reason the line above doesn't work, because it say internal server error, i think it is still the wrong url
 time.sleep(10)
 response = requests.get(url, auth=HTTPBasicAuth( USERNAME, PASSWORD))  # replace with your credentials
-print(response.text) #this prints the fatass error message, its mostly facedetection error. Its because its the exact same prompt multiple times with the same text.
+#print(response.text) #this prints the fatass error message, its mostly facedetection error. Its because its the exact same prompt multiple times with the same text.
 # If the video is returned in the response
 response_string2 = response.text
 response_dict2 = json.loads(response_string2)
 print(response_dict2)
-#Video_id = response_dict2['result_url']
-#print(Video_id)
+Video_id = []
+Video_id = response_dict2['result_url']
+print(Video_id)
+
+#This is to split the link into 2 Parts.
+parsed = urlparse(Video_id)
+
+bucket_name = parsed.netloc
+key = parsed.path.lstrip('/')
+
+print(bucket_name)  # prints: d-id-talks-persistent-prod
+print(key)  # prints: google-oauth2|113737039728929273410/tlk_nn9gFufcLwrXjHOnDGuAu/1690301426334.mp4
+
+create_presigned_url()
