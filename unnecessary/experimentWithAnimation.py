@@ -101,6 +101,9 @@ ZWxpYXNsaW5kZW1hbm4wNUBnbWFpbC5jb20:NeW1BhLgVxtwnSWT1SdB3
 }
 """
 #the basic authentification
+
+#VideoFunction experimentation
+"""
 import requests
 from requests.auth import HTTPBasicAuth
 import json
@@ -173,5 +176,12 @@ print(Video_id)
 
 #with open('video.mp4', 'wb') as f:
 #    f.write(response.content)
+"""
+import os
+
+video_path = 'Video1.mp4'
+
+# Open the video with the default application for .mp4 files
+os.startfile(video_path)
 
 

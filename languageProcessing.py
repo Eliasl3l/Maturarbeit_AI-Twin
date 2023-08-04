@@ -1,5 +1,5 @@
 import openai
-openai.api_key = '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'  # Replace with your OpenAI API key
+openai.api_key = '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'  # Replace with your OpenAI API key
 language = 'en'
 
 def get_chatgpt_response(query):
@@ -14,4 +14,4 @@ def get_chatgpt_response(query):
 
     return response.choices[0].text.strip()
 #return response.choices[0].text.strip()
-print(get_chatgpt_response("how are your virtual circuits doing Mr. super smart?"))
+#print(get_chatgpt_response("how are your virtual circuits doing Mr. super smart?"))
