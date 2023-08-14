@@ -15,6 +15,6 @@ def main():
             make_video(response, NUM)
             NUM += 1
             if NUM > 1:
-                os.remove(f'output{NUM-2}.mp3')
+                os.remove(f'Video{NUM-2}.mp3')
 
 main()

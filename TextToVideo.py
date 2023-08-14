@@ -47,7 +47,7 @@ def make_video(TEXT, Num):
     talk_id = response_dict['id']  # replace with your ID
     url = f"https://api.d-id.com/talks/{talk_id}"  # replace with the correct URL
     #for some reason the line above doesn't work, because it say internal server error, i think it is still the wrong url
-    time.sleep(20)
+    time.sleep(10)
     response = requests.get(url, auth=HTTPBasicAuth( USERNAME, PASSWORD))  # replace with your credentials
     #print(response.text) #this prints the fatass error message, its mostly facedetection error. Its because its the exact same prompt multiple times with the same text.
     # If the video is returned in the response
