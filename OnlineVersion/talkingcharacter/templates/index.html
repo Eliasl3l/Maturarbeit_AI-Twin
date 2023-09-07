@@ -1,0 +1,120 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech Recognition</title>
+</head>
+<body>
+
+<!-- Display status -->
+<div id="status">Idle</div>
+
+<!-- Button to start speech recognition -->
+<button onclick="recognition.start()">Start Listening</button>
+
+<!-- JavaScript for handling speech recognition and communication with server -->
+<script>
+    // Initialize the Web Speech API
+    let recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+
+    recognition.onstart = function() {
+        // Indicate that recognition has started
+        document.getElementById("status").innerText = "Listening...";
+    };
+
+    recognition.onresult = function(event) {
+        let transcript = event.results[0][0].transcript;
+
+        // Indicate that speech was recognized
+        document.getElementById("status").innerText = "Recognized: " + transcript;
+
+        sendDataToServer(transcript);
+    };
+
+    function sendDataToServer(transcript) {
+        // Indicate that the data is being sent to the server
+        document.getElementById("status").innerText = "Sending to server...";
+
+        fetch('/process_transcript/', {
+            method: 'POST',
+            body: JSON.stringify({
+                'transcript': transcript
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken')  // Ensure CSRF token is sent for Django
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Indicate that the server has processed the data
+            document.getElementById("status").innerText = "Data processed by server!";
+        })
+        .catch(error => {
+            // Indicate if there's an error
+            document.getElementById("status").innerText = "Error: " + error;
+        });
+    }
+
+    // Helper function to get CSRF token from cookies
+    function getCookie(name) {
+        let value = "; " + document.cookie;
+        let parts = value.split("; " + name + "=");
+        if (parts.length == 2) return parts.pop().split(";").shift();
+    }
+</script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Page</title>
+</head>
+    <iframe width="320" height="240" controls src="{{ video_link }}"> 
+    </iframe>
+
+<head>
+    <style>
+        #statusBar {
+            width: 100%;
+            height: 30px;
+            border: 1px solid black;
+            background-color: #e9e9e9;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            padding: 5px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+        }
+    </style>
+
+</head>
+    <div id="statusBar">
+        <span id="statusText">Loading...</span>
+    </div>
+    <script>
+        function updateStatus() {
+            fetch('/get_server_status/')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('statusText').textContent = data.status;
+            })
+            .catch(error => {
+                console.error('Error fetching status:', error);
+                document.getElementById('statusText').textContent = 'Error fetching status';
+            });
+    
+            // Fetch every 10 seconds (you can adjust the interval as needed)
+            setTimeout(updateStatus, 10000);
+        }
+    
+        // Start the status update loop
+        updateStatus();
+    </script>
+    
+</body>
+</html>

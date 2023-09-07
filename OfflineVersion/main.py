@@ -3,10 +3,9 @@ from SpeechToText import listen
 from TextToVideo import make_video
 import os
 
-NUM = 0
 
 def main():
-    global NUM
+    NUM = 0
     while True:
         query = listen()
         if query:
