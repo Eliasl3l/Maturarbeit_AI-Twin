@@ -8,12 +8,13 @@ from .models import ServerStatus
 from django.utils.decorators import method_decorator
 from django.views import View
 import json
-from .utils import main1, Newest_link
+from .utils import runface, Newest_link
 from django.http import JsonResponse
 import queue
+from .utils import audio_queue
 
 status_text = "standard"
-audio_queue = queue.Queue()
+
 
 def receive_audio(request):
     if request.method == 'POST':
@@ -23,10 +24,15 @@ def receive_audio(request):
             # Do something with the audio file
             # For example, put it in a shared queue (which you'll need to define elsewhere)
             audio_queue.put(audio_file)
+            runface(audio_queue.get)
+            context = {'video_link': Newest_link}
+            render(request, 'index.html', context)
+            
 
         return JsonResponse({"message": "Audio received successfully!"})
     return JsonResponse({"message": "Invalid method or missing file."})
 
+#def startconversation(request)
 @method_decorator(csrf_exempt, name='dispatch')
 class ProcessTranscriptView(View):
 
@@ -47,7 +53,7 @@ class CharacterView(TemplateView):
             if not audio_queue.empty():
                 audio_file = audio_queue.get()
                 print("main is running")
-                main1(audio_file)
+                runface(audio_file)
                 context = {'video_link': Newest_link}
                 return render(self.request, 'index.html', context) 
             # Process the audio file here, e.g., transcribe, analyze, etc.

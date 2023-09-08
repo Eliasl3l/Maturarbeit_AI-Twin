@@ -1,6 +1,5 @@
 import os
 import queue
-#from .TextToVideo import make_video
 import requests
 from requests.auth import HTTPBasicAuth
 import json
@@ -88,7 +87,17 @@ def make_video(TEXT, Num):
 
 
 
-def main1():
+def runface(audio_queue):
+    global NUM
+    global Newest_link
+
+    audio_file = audio_queue
+    response = get_chatgpt_response(audio_file)
+    print(f"Assistant: {response}")
+    make_video(response, NUM)
+   
+"""
+def runface():
     global NUM
     global Newest_link
     while True:
@@ -97,8 +106,6 @@ def main1():
             response = get_chatgpt_response(audio_file)
             print(f"Assistant: {response}")
             make_video(response, NUM)
-   
-
-
+"""   
 
 
