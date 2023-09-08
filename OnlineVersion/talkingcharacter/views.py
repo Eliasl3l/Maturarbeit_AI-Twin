@@ -18,9 +18,14 @@ audio_queue = queue.Queue()
 def receive_audio(request):
     if request.method == 'POST':
         audio_file = request.FILES.get('audio_file')
+
         if audio_file:
+            # Do something with the audio file
+            # For example, put it in a shared queue (which you'll need to define elsewhere)
             audio_queue.put(audio_file)
-            print("audiofile is on queue")
+
+        return JsonResponse({"message": "Audio received successfully!"})
+    return JsonResponse({"message": "Invalid method or missing file."})
 
 @method_decorator(csrf_exempt, name='dispatch')
 class ProcessTranscriptView(View):
@@ -66,16 +71,6 @@ def update_server_status(request):
         return JsonResponse({"error": "Status text not provided!"}, status=400)
     
 
-def receive_audio(request):
-    if request.method == 'POST':
-        audio_file = request.FILES.get('audio_file')
 
-        if audio_file:
-            # Do something with the audio file
-            # For example, put it in a shared queue (which you'll need to define elsewhere)
-            audio_queue.put(audio_file)
-
-        return JsonResponse({"message": "Audio received successfully!"})
-    return JsonResponse({"message": "Invalid method or missing file."})
 
     

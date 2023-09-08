@@ -88,13 +88,6 @@ def make_video(TEXT, Num):
 
 
 
-
-def main1(audio_file):
-    global NUM
-    response = get_chatgpt_response(audio_file)
-    print(f"Assistant: {response}")
-    make_video(response, NUM) 
-
 def main1():
     global NUM
     global Newest_link
