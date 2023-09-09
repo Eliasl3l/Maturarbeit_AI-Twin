@@ -19,12 +19,15 @@ status_text = "standard"
 def receive_audio(request):
     if request.method == 'POST':
         audio_file = request.FILES.get('audio_file')
-
+        render(request, 'testtemplate.html')
         if audio_file:
+            global status_text, new_status
             # Do something with the audio file
             # For example, put it in a shared queue (which you'll need to define elsewhere)
             audio_queue.put(audio_file)
+            status_text = f"This is the newest link {Newest_link}"
             runface(audio_queue.get)
+            new_status = f"The video has actually been processed"
             context = {'video_link': Newest_link}
             render(request, 'index.html', context)
             
@@ -37,9 +40,14 @@ def receive_audio(request):
 class ProcessTranscriptView(View):
 
     def post(self, request, *args, **kwargs):
+        global status_text, Newest_link, new_status
         data = json.loads(request.body)
         transcript = data.get('transcript', '')
-
+        status_text = f"This is the newest link {Newest_link}"
+        runface(audio_queue.get)
+        new_status = f"The video has actually been processed"
+        context = {'video_link': Newest_link}
+        render(request, 'index.html', context)
         # Process the transcript as needed
         # For demonstration purposes, we'll just echo it back
         return JsonResponse({"received_transcript": transcript})
@@ -47,16 +55,6 @@ class ProcessTranscriptView(View):
 class CharacterView(TemplateView):
     template_name = "index.html"
 
-    def show_video(self,**kwargs):
-        global Newest_link
-        while True:
-            if not audio_queue.empty():
-                audio_file = audio_queue.get()
-                print("main is running")
-                runface(audio_file)
-                context = {'video_link': Newest_link}
-                return render(self.request, 'index.html', context) 
-            # Process the audio file here, e.g., transcribe, analyze, etc.
 
 from django.http import JsonResponse
 

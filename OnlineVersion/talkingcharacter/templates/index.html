@@ -11,7 +11,7 @@
 <body>
 
 <!-- Display status -->
-<div id="status">Idle</div>
+<div id="status">welcome to the talking character</div>
 
 <!-- Button to start speech recognition -->
 <button onclick="recognition.start()">Start Listening</button>
@@ -72,9 +72,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Page</title>
 </head>
-    <iframe width="320" height="240" controls src="{{ video_link }}"> 
-    </iframe>
-
+<body>
+    <video width="520" height="520" controls>
+        <source src="https://d-id-talks-prod.s3.us-west-2.amazonaws.com/google-oauth2%7C113737039728929273410/tlk_z4IvbpxeD2WgfxrHNw1gg/1694278222204.mp4?AWSAccessKeyId=AKIA5CUMPJBIK65W6FGA&Expires=1694364628&Signature=BTu%2FqwtwqH3QxHf4RXVlK2dNJG0%3D&X-Amzn-Trace-Id=Root%3D1-64fca254-301094ca631219e04d793ddd%3BParent%3Dec48072abb5036ee%3BSampled%3D1%3BLineage%3D6b931dd4%3A0" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    
+</body>
 <head>
     <style>
         #statusBar {
@@ -83,7 +87,7 @@
             border: 1px solid black;
             background-color: #e9e9e9;
             position: fixed;
-            bottom: 0;
+            bottom: 30;
             left: 0;
             padding: 5px;
             box-sizing: border-box;
