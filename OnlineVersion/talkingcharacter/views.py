@@ -25,11 +25,13 @@ def receive_audio(request):
             # Do something with the audio file
             # For example, put it in a shared queue (which you'll need to define elsewhere)
             audio_queue.put(audio_file)
+            new_status = f"The video will actually be processed"
+            runface(audio_queue.get())
+            
             status_text = f"This is the newest link {Newest_link}"
-            runface(audio_queue.get)
-            new_status = f"The video has actually been processed"
-            context = {'video_link': Newest_link}
-            render(request, 'index.html', context)
+            #context = {'video_link': Newest_link}
+            #render(request, 'index.html', context)
+            status_text = f"it should have been processed"
             
 
         return JsonResponse({"message": "Audio received successfully!"})
@@ -47,11 +49,11 @@ class ProcessTranscriptView(View):
         runface(audio_queue.get)
         new_status = f"The video has actually been processed"
         context = {'video_link': Newest_link}
-        render(request, 'index.html', context)
+        
         # Process the transcript as needed
         # For demonstration purposes, we'll just echo it back
-        return JsonResponse({"received_transcript": transcript})
-
+        return render(request, 'index.html', context)
+#JsonResponse({"received_transcript": transcript})
 class CharacterView(TemplateView):
     template_name = "index.html"
 

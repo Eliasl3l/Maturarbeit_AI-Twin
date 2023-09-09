@@ -12,7 +12,7 @@ import openai
 NUM = 0
 USERNAME = secrets.USERNAME_DID
 PASSWORD = secrets.PASSWORD_DID
-Newest_link = ''
+Newest_link = 'https://d-id-talks-prod.s3.us-west-2.amazonaws.com/google-oauth2%7C113737039728929273410/tlk_z4IvbpxeD2WgfxrHNw1gg/1694278222204.mp4?AWSAccessKeyId=AKIA5CUMPJBIK65W6FGA&Expires=1694364628&Signature=BTu%2FqwtwqH3QxHf4RXVlK2dNJG0%3D&X-Amzn-Trace-Id=Root%3D1-64fca254-301094ca631219e04d793ddd%3BParent%3Dec48072abb5036ee%3BSampled%3D1%3BLineage%3D6b931dd4%3A0'
 # Shared audio queue for the entire application
 audio_queue = queue.Queue()
 # Presumably, other supporting functions will be here like get_chatgpt_response and make_video
