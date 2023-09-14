@@ -9,30 +9,38 @@ from django.utils.decorators import method_decorator
 from django.views import View
 import json
 from .utils import runface, Newest_link
-from django.http import JsonResponse
 import queue
 from .utils import audio_queue
+
 
 status_text = "standard"
 
 
 def receive_audio(request):
     if request.method == 'POST':
-        audio_file = request.FILES.get('audio_file')
+        data = json.loads(request.body.decode('utf-8'))
+        # Get the 'transcript' value from the JSON data
+        transcript = data.get('transcript')
+        #audio_file = request.FILES.get('audio_file')
         render(request, 'testtemplate.html')
-        if audio_file:
+        if transcript:
             global status_text, new_status
+            """
+            
             # Do something with the audio file
             # For example, put it in a shared queue (which you'll need to define elsewhere)
-            audio_queue.put(audio_file)
+            audio_queue.put(transcript)
             new_status = f"The video will actually be processed"
-            runface(audio_queue.get())
+            s = audio_queue.get()
+            runface(s)
             
             status_text = f"This is the newest link {Newest_link}"
+
             #context = {'video_link': Newest_link}
             #render(request, 'index.html', context)
             status_text = f"it should have been processed"
-            
+            """
+            status_text = "the audio has been received"
 
         return JsonResponse({"message": "Audio received successfully!"})
     return JsonResponse({"message": "Invalid method or missing file."})
@@ -41,24 +49,24 @@ def receive_audio(request):
 @method_decorator(csrf_exempt, name='dispatch')
 class ProcessTranscriptView(View):
 
-    def post(self, request, *args, **kwargs):
-        global status_text, Newest_link, new_status
-        data = json.loads(request.body)
-        transcript = data.get('transcript', '')
-        status_text = f"This is the newest link {Newest_link}"
-        runface(audio_queue.get)
-        new_status = f"The video has actually been processed"
-        context = {'video_link': Newest_link}
+    def post(self, request):
+        if request.method == 'POST':
+            global status_text, Newest_link, new_status, transcript
+            data = json.loads(request.body)
+            transcript = data.get('transcript', '')
+            #s = audio_queue.get()
+            Newest_link = runface(transcript)
+            new_status = f"The video has actually been processed"
+            
         
         # Process the transcript as needed
         # For demonstration purposes, we'll just echo it back
-        return render(request, 'index.html', context)
-#JsonResponse({"received_transcript": transcript})
+        return JsonResponse({"video_link": Newest_link})
 class CharacterView(TemplateView):
     template_name = "index.html"
 
 
-from django.http import JsonResponse
+
 
 def get_server_status(request):
     # Your logic to determine server status. For demonstration:
