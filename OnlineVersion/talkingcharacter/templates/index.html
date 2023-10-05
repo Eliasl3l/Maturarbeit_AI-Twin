@@ -51,6 +51,9 @@
         })
         .then(response => response.json())
         .then(data => {
+            // Access video_link from the data object
+            let video_link = data.video_link;
+            
             document.getElementById("videosource").src = video_link;
             let videoplayer = document.getElementById("videoplayer");
             videoplayer.load();

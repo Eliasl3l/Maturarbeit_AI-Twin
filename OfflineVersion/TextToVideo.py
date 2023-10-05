@@ -5,9 +5,8 @@ import time
 #from makePresignedURL import create_presigned_url #for making PresignedURL which isn't necessary anymore, because the link isn't returned as s3 link anymore.
 import os # for Videoplayer
 
-
 USERNAME = 'ZWxpYXNsaW5kZW1hbm4wNUBnbWFpbC5jb20'
-PASSWORD = 'SiNSSx9Bp22XWlrHHmx2X'
+PASSWORD = 'N0tBFK-JUJhP25z7NqrYL'
 #TEXT = "Make sure the video file exists at the specified path before running this code. You can verify the path by navigating to the directory in File Explorer and checking for the file."
 
 

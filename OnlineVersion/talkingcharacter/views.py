@@ -33,8 +33,8 @@ def receive_audio(request):
             
             status_text = f"This is the newest link {Newest_link}"
 
-            #context = {'video_link': Newest_link}
-            #render(request, 'index.html', context)
+            context = {'video_link': Newest_link}
+            render(request, 'index.html', context)
             status_text = f"it should have been processed"
         
             status_text = "the audio has been received"
@@ -59,7 +59,7 @@ class ProcessTranscriptView(View):
             #while True:
              #   if Newest_link:
               #      break
-            time.sleep(10)
+            
         # Process the transcript as needed
         # For demonstration purposes, we'll just echo it back
             
@@ -67,9 +67,10 @@ class ProcessTranscriptView(View):
 
 class CharacterView(TemplateView):
     template_name = "index.html"
-    def updateview(link, args, kwargs):
+    def updateview(link, request):
         #funtion that ONLY updates the video
-        pass
+        context = {'video_link': Newest_link}
+        return render(request, 'index.html', context)
         
 
 

@@ -76,7 +76,7 @@ def make_video(TEXT):
         return TypeError
     url = f"https://api.d-id.com/talks/{talk_id}"  # replace with the correct URL
     #for some reason the line above doesn't work, because it say internal server error, i think it is still the wrong url
-    time.sleep(10)
+    time.sleep(20)
     response = requests.get(url, auth=HTTPBasicAuth( USERNAME, PASSWORD))  # replace with your credentials
     #print(response.text) #this prints the fatass error message, its mostly facedetection error. Its because its the exact same prompt multiple times with the same text.
     # If the video is returned in the response
@@ -92,10 +92,9 @@ def make_video(TEXT):
 
 
 def runface(transcript):
-    global Newest_link
     response = get_chatgpt_response(transcript)
     print(f"Assistant: {response}")
-    make_video(response)
-   
+    video_link = make_video(response)
+    return video_link
 
 
