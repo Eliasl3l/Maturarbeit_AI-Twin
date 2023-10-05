@@ -35,7 +35,7 @@ def get_chatgpt_response(query):
 
     return response.choices[0].text.strip()
 
-def make_video(TEXT, Num):    
+def make_video(TEXT):    
     #make the video
     global Newest_link
     url = "https://api.d-id.com/talks"
@@ -70,7 +70,10 @@ def make_video(TEXT, Num):
     #this part converts the json thing to a dictionary so i can load the id.
     response_string = response.text
     response_dict = json.loads(response_string)
-    talk_id = response_dict['id']  # replace with your ID
+    try:
+        talk_id = response_dict['id']  # replace with your ID
+    except KeyError:
+        return TypeError
     url = f"https://api.d-id.com/talks/{talk_id}"  # replace with the correct URL
     #for some reason the line above doesn't work, because it say internal server error, i think it is still the wrong url
     time.sleep(10)
@@ -89,23 +92,10 @@ def make_video(TEXT, Num):
 
 
 def runface(transcript):
-    global NUM
     global Newest_link
-
     response = get_chatgpt_response(transcript)
     print(f"Assistant: {response}")
-    make_video(response, NUM)
+    make_video(response)
    
-"""
-def runface():
-    global NUM
-    global Newest_link
-    while True:
-        if not audio_queue.empty():
-            audio_file = audio_queue.get()
-            response = get_chatgpt_response(audio_file)
-            print(f"Assistant: {response}")
-            make_video(response, NUM)
-"""   
 
 

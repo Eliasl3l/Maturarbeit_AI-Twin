@@ -9,8 +9,8 @@ from django.utils.decorators import method_decorator
 from django.views import View
 import json
 from .utils import runface, Newest_link
-import queue
-from .utils import audio_queue
+import time
+#import subprocess
 
 
 status_text = "standard"
@@ -22,24 +22,21 @@ def receive_audio(request):
         # Get the 'transcript' value from the JSON data
         transcript = data.get('transcript')
         #audio_file = request.FILES.get('audio_file')
-        render(request, 'testtemplate.html')
         if transcript:
-            global status_text, new_status
-            """
+            global status_text, new_status, Newest_link
+            
             
             # Do something with the audio file
             # For example, put it in a shared queue (which you'll need to define elsewhere)
-            audio_queue.put(transcript)
-            new_status = f"The video will actually be processed"
-            s = audio_queue.get()
-            runface(s)
+            
+            Newest_link = runface(transcript)
             
             status_text = f"This is the newest link {Newest_link}"
 
             #context = {'video_link': Newest_link}
             #render(request, 'index.html', context)
             status_text = f"it should have been processed"
-            """
+        
             status_text = "the audio has been received"
 
         return JsonResponse({"message": "Audio received successfully!"})
@@ -56,14 +53,26 @@ class ProcessTranscriptView(View):
             transcript = data.get('transcript', '')
             #s = audio_queue.get()
             Newest_link = runface(transcript)
+            #result = subprocess.run([runface, transcript], text=True, capture_output=True)
+            #Newest_link = result.stdout
             new_status = f"The video has actually been processed"
-            
-        
+            #while True:
+             #   if Newest_link:
+              #      break
+            time.sleep(10)
         # Process the transcript as needed
         # For demonstration purposes, we'll just echo it back
-        return JsonResponse({"video_link": Newest_link})
+            
+            return JsonResponse({"video_link": Newest_link})
+
 class CharacterView(TemplateView):
     template_name = "index.html"
+    def updateview(link, args, kwargs):
+        #funtion that ONLY updates the video
+        pass
+        
+
+
 
 
 
