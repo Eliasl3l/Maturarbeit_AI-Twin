@@ -93,6 +93,15 @@ def update_server_status(request):
         return JsonResponse({"message": "Status updated successfully!"})
     else:
         return JsonResponse({"error": "Status text not provided!"}, status=400)
+ 
+    
+@method_decorator(csrf_exempt, name='dispatch')
+class WebhookView(View):
+
+    def post(self, request):
+        payload = request.body
+        print(payload)
+        return JsonResponse({'status':'webhook worked'}, safe=False)
     
 
 

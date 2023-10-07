@@ -12,6 +12,7 @@ import openai
 NUM = 0
 USERNAME = secrets.USERNAME_DID
 PASSWORD = secrets.PASSWORD_DID
+ADRESS = secrets.NGROK_KEY
 Newest_link = 'link.link@link.com'
 # Shared audio queue for the entire application
 audio_queue = queue.Queue()
@@ -55,7 +56,8 @@ def make_video(TEXT):
         },
         #"persist": True,
         "source_url": "https://i.pinimg.com/564x/e7/d8/cd/e7d8cdfc7c14420aa6a46b9792806b83.jpg",
-        "webhook": "https://host.domain.tld/to/webhook"
+        "webhook": ADRESS
+        
         #it always says facedetection error ,i dont know why.
         #still have to integrate an actual webhook
     }
