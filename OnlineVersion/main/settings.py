@@ -59,7 +59,7 @@ if DEBUG_TOOLBAR_ENABLED:
     INSTALLED_APPS += ['debug_toolbar']
     MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware']
 
-ROOT_URLCONF = 'backendMaturarbeit_test.urls'
+ROOT_URLCONF = 'main.urls'
 
 TEMPLATES = [
     {
@@ -77,7 +77,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'backendMaturarbeit_test.wsgi.application'
+WSGI_APPLICATION = 'main.wsgi.application'
 
 
 # Database
