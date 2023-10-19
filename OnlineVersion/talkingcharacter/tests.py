@@ -31,8 +31,8 @@ class Secretkeytesting(TestCase):
         else:
             #inspired by Chatgpt
             url = responseVideo
-            directory = "C:/Users/41796/Documents/GitHub/Maturaarbeit_TalkingCharacter/OnlineVersion/talkingcharacter"
-            video_path = os.path.join(directory, "video.mp4")
+            BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            video_path = os.path.join(BASE_DIR, "talkingcharacter", "video.mp4")
             urllib.request.urlretrieve(url, video_path)
 
             try:
