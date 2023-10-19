@@ -1,11 +1,13 @@
 from django.test import TestCase
 from . import secrets, utils
 import openai
+import os
 import cv2
 import urllib.request
 
 
 class Secretkeytesting(TestCase):
+    # original source: https://stackoverflow.com/questions/76522693/how-to-check-the-validity-of-the-openai-key-from-python#:~:text=To%20check%20if%20your%20OpenAI,Here%27s%20a%20simple%20code%20example
     def test_openaikey_isStillWorking(self):
         openai.api_key = secrets.OPENAI_KEY
         try:
@@ -27,22 +29,38 @@ class Secretkeytesting(TestCase):
         except Exception as E:
             self.fail(E)
         else:
+            #inspired by Chatgpt
             url = responseVideo
-            urllib.request.urlretrieve(url, "video.mp4")
+            directory = "C:/Users/41796/Documents/GitHub/Maturaarbeit_TalkingCharacter/OnlineVersion/talkingcharacter"
+            video_path = os.path.join(directory, "video.mp4")
+            urllib.request.urlretrieve(url, video_path)
 
-            cap = cv2.VideoCapture("video.mp4")
+            try:
+                cap = cv2.VideoCapture(video_path)
+            except Exception as E:
+                self.fail(E)
+
 
             while cap.isOpened():
                 ret, frame = cap.read()
                 if not ret:
-                    break  # Exit loop at end of video
+                    break
                 cv2.imshow('Video', frame)
+                # Exit on pressing 'q'
                 if cv2.waitKey(1) & 0xFF == ord('q'):
-                    break  # Exit loop on 'q' key press
+                    break
 
             cap.release()
             cv2.destroyAllWindows()
-            self = True
+
+            #delete the mp4 file if it exist or otherways give an error message
+            if os.path.exists(video_path):
+                os.remove(video_path)
+                self = True
+            else:
+                self.fail("The video wasn't created in the proper folder")
+
+            
 
 # The video Test doesn't work yet because of an errror of the cv2 module
         
