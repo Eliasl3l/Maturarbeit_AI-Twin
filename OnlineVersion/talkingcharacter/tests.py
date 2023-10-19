@@ -42,10 +42,14 @@ class Secretkeytesting(TestCase):
 
 
             while cap.isOpened():
-                ret, frame = cap.read()
-                if not ret:
-                    break
+                try:
+                    ret, frame = cap.read()
+                    if not ret:  # If no frame is captured, break the loop
+                        break
+                except Exception as E:
+                    self.fail(E)
                 cv2.imshow('Video', frame)
+                
                 # Exit on pressing 'q'
                 if cv2.waitKey(1) & 0xFF == ord('q'):
                     break
