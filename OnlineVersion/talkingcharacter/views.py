@@ -8,14 +8,14 @@ from .models import ServerStatus
 from django.utils.decorators import method_decorator
 from django.views import View
 import json
-from .utils import runface, Newest_link
+from .utils import video, Newest_link
 import time
 #import subprocess
 
 
 status_text = "standard"
 
-
+"""
 def receive_audio(request):
     if request.method == 'POST':
         data = json.loads(request.body.decode('utf-8'))
@@ -29,7 +29,7 @@ def receive_audio(request):
             # Do something with the audio file
             # For example, put it in a shared queue (which you'll need to define elsewhere)
             
-            Newest_link = runface(transcript)
+            Newest_link = video.request_video(transcript)
             
             status_text = f"This is the newest link {Newest_link}"
 
@@ -41,7 +41,7 @@ def receive_audio(request):
 
         return JsonResponse({"message": "Audio received successfully!"})
     return JsonResponse({"message": "Invalid method or missing file."})
-
+"""
 #def startconversation(request)
 @method_decorator(csrf_exempt, name='dispatch')
 class ProcessTranscriptView(View):
@@ -51,14 +51,12 @@ class ProcessTranscriptView(View):
             global status_text, Newest_link, new_status, transcript
             data = json.loads(request.body)
             transcript = data.get('transcript', '')
-            #s = audio_queue.get()
-            Newest_link = runface(transcript)
-            #result = subprocess.run([runface, transcript], text=True, capture_output=True)
-            #Newest_link = result.stdout
+            
+            Newest_link = video.request_video(transcript)
+            
             new_status = f"The video has actually been processed"
-            #while True:
-             #   if Newest_link:
-              #      break
+            update_server_status()
+
             
         # Process the transcript as needed
         # For demonstration purposes, we'll just echo it back
@@ -101,6 +99,7 @@ class WebhookView(View):
     def post(self, request):
         payload = request.body
         print(payload)
+        video.request_video(request)
         return JsonResponse({'status':'webhook worked'}, safe=False)
     
 
