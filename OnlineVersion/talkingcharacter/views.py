@@ -9,66 +9,41 @@ from django.utils.decorators import method_decorator
 from django.views import View
 import json
 from .utils import video, Newest_link
-import time
-#import subprocess
 
 
 status_text = "standard"
 
-"""
-def receive_audio(request):
-    if request.method == 'POST':
-        data = json.loads(request.body.decode('utf-8'))
-        # Get the 'transcript' value from the JSON data
-        transcript = data.get('transcript')
-        #audio_file = request.FILES.get('audio_file')
-        if transcript:
-            global status_text, new_status, Newest_link
-            
-            
-            # Do something with the audio file
-            # For example, put it in a shared queue (which you'll need to define elsewhere)
-            
-            Newest_link = video.request_video(transcript)
-            
-            status_text = f"This is the newest link {Newest_link}"
 
-            context = {'video_link': Newest_link}
-            render(request, 'index.html', context)
-            status_text = f"it should have been processed"
-        
-            status_text = "the audio has been received"
-
-        return JsonResponse({"message": "Audio received successfully!"})
-    return JsonResponse({"message": "Invalid method or missing file."})
-"""
 #def startconversation(request)
 @method_decorator(csrf_exempt, name='dispatch')
 class ProcessTranscriptView(View):
 
+    #I still have to check if D-ID acutally sends a post- and not a get request 
     def post(self, request):
-        if request.method == 'POST':
-            global status_text, Newest_link, new_status, transcript
-            data = json.loads(request.body)
-            transcript = data.get('transcript', '')
-            
-            Newest_link = video.request_video(transcript)
-            
-            new_status = f"The video has actually been processed"
-            update_server_status()
+        global status_text, Newest_link, new_status, transcript
+        data = json.loads(request.body)
+        transcript = data.get('transcript', '')
+        
+        try:
+            x = video.request_video(transcript, self)   
+        except Exception as E:
+            print(E + "video.requestvideo didnt work")
+            return JsonResponse({"something with the video request went wrong"})
+        status_text = "The video has actually been processed"
+        print("the video has actually been processed")
 
-            
-        # Process the transcript as needed
+        new_status = "The video has actually been processed"
+
         # For demonstration purposes, we'll just echo it back
-            
-            return JsonResponse({"video_link": Newest_link})
+        
+        return JsonResponse({"message": "Audio received successfully!"})
 
 class CharacterView(TemplateView):
     template_name = "index.html"
     def updateview(link, request):
         #funtion that ONLY updates the video
         context = {'video_link': Newest_link}
-        return render(request, 'index.html', context)
+        return render(request, "index.html", context)
         
 
 
@@ -99,7 +74,8 @@ class WebhookView(View):
     def post(self, request):
         payload = request.body
         print(payload)
-        video.request_video(request)
+        link = video.get_video(request)
+        CharacterView.updateview(link)
         return JsonResponse({'status':'webhook worked'}, safe=False)
     
 

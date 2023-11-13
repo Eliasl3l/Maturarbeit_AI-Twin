@@ -13,8 +13,8 @@ def main():
             print(f"Assistant: {response}")
             make_video(response, NUM)
             NUM += 1
-            #if NUM > 1:
-            #    os.remove(f'Video{NUM-1}.mp3')
+            if NUM > 1:
+                os.remove(f'Video{NUM-1}.mp3')
 
 main()
 

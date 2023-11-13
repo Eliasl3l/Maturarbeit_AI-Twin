@@ -8,11 +8,11 @@ from . import secrets
 import openai
 
 
-# Assuming other required imports are added as needed
+
 NUM = 0
 USERNAME = secrets.USERNAME_DID
 PASSWORD = secrets.PASSWORD_DID
-ADRESS = secrets.NGROK_KEY
+ADRESS = "".join([secrets.NGROK_KEY, "/webhook/"])
 Newest_link = 'link.link@link.com'
 # Shared audio queue for the entire application
 audio_queue = queue.Queue()
@@ -39,7 +39,8 @@ def get_chatgpt_response(query):
 class video:
         #make the video
     #def __init__(self):
-      
+    
+    #this functions' code is mostly copied from https://docs.d-id.com/reference/overview  
     def request_video(TEXT, self):
         global Newest_link
         url = "https://api.d-id.com/talks"
@@ -57,12 +58,10 @@ class video:
                 "face_id": "1",
                 "size": 512
             },
-            #"persist": True,
             "source_url": "https://i.pinimg.com/564x/e7/d8/cd/e7d8cdfc7c14420aa6a46b9792806b83.jpg",
             "webhook": ADRESS,
             
-            #it always says facedetection error ,i dont know why <-- because it was famous person
-            #still have to integrate an actual webhook
+
         }
         headers = {
             "accept": "application/json",
@@ -80,20 +79,21 @@ class video:
             return TypeError
         url = f"https://api.d-id.com/talks/{talk_id}"    
         self.url = url
+        print(url)
+        return True
 
 
 
     def get_video(request, self):
+        print("getvideofuntion")
         response = requests.get(self.url, auth=HTTPBasicAuth( USERNAME, PASSWORD))  # replace with your credentials
         #print(response.text) #this prints the fatass error message, its mostly facedetection error. Its because its the exact same prompt multiple times with the same text.
         # If the video is returned in the response
         response_string2 = response.text
         response_dict2 = json.loads(response_string2)
-        #print(response_dict2)
         Video_id = []
         Video_id = response_dict2['result_url']
         print(Video_id)
-        #Newest_link = Video_id
         return Video_id
     
 

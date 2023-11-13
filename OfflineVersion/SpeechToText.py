@@ -19,7 +19,7 @@ def listen():
         return query
     except Exception as e:
         print(e)
-        #print("Sorry, I couldn't understand. Can you please repeat?")
+        print("Sorry, I couldn't understand. Can you please repeat?")
         return None
 
 listen()
