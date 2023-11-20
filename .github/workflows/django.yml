@@ -34,4 +34,4 @@ jobs:
         DJANGO_DEBUG: 'False'
       working-directory: ./OnlineVersion
       run: |
-        python manage.py test
+        python run_dev_server.py test
