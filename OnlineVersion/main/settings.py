@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-41u!$6mi)h9o^21hn(bj&c4vzg5kzf4!p&3vn55skq$lt#s7l*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = ['*','2910-2a02-aa16-517b-2000-85e7-557a-210d-fb40.ngrok.io']
 
 
 # Application definition
@@ -132,10 +132,11 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
 if os.environ.get('DJANGO_DEVELOPMENT'):
     ALLOWED_HOSTS=['*']
 else:
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.ngrok.io']
 #ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', 'localhost').split(',')
 
 

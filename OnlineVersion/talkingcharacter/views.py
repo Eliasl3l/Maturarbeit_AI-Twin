@@ -78,6 +78,11 @@ class WebhookView(View):
         CharacterView.updateview(link)
         return JsonResponse({'status':'webhook worked'}, safe=False)
     
+    def get(self, request):
+        link = video.get_video(request)
+        CharacterView.updateview(link)
+        return JsonResponse({'status':'webhook worked'}, safe=False)
+    
 
 
 
