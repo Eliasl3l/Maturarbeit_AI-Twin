@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'talkingcharacter',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -139,4 +140,15 @@ else:
     ALLOWED_HOSTS = ['*']
 
 #'localhost', '127.0.0.1', '.ngrok.io'
+
+#channels
+ASGI_APPLICATION = 'talkingcharacter.routing.application'
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
 

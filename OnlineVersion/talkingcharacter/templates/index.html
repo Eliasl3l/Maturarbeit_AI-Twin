@@ -53,19 +53,49 @@
         .then(data => {
             // Access video_link from the data object
             let video_link = data.video_link;
-            
-            document.getElementById("videosource").src = video_link;
+            if (video_link !== undefined) {
+                document.getElementById("videosource").src = video_link;
+            } 
+            else {
+                console.error("Video link is undefined");
+                document.getElementById("status").innerText = "Error: Video link is undefined";
+            }
             let videoplayer = document.getElementById("videoplayer");
             videoplayer.load();
             videoplayer.play();
             // Indicate that the server has processed the data
-            document.getElementById("status").innerText = "Data processed by server!";
+            document.getElementById("status").innerText = "Incoming data was processed by server";
         })
         .catch(error => {
             // Indicate if there's an error
             document.getElementById("status").innerText = "Error: " + error;
-        });
-    }
+        })
+
+        var socket = new WebSocket('ws://a3ae-2a02-aa16-517b-2000-d867-6b56-c9af-30ae.ngrok-free.app/ws/mywebsocket');
+
+        socket.onmessage = function(event) {
+            var data = JSON.parse(event.data);
+            if (data.video_link) {
+                var videoPlayer = document.getElementById('videoPlayer');
+                videoPlayer.src = data.video_link;
+                videoPlayer.load();
+                videoPlayer.play();
+            }
+        };
+    
+        socket.onopen = function(event) {
+            console.log('WebSocket connection established');
+        };
+    
+        socket.onerror = function(error) {
+            console.error('WebSocket error:', error);
+        };
+
+}
+
+
+
+
 
     // Helper function to get CSRF token from cookies
     function getCookie(name) {
@@ -81,7 +111,7 @@
 </head>
 <body>
     <video id="videoplayer" width="520" height="520" controls>
-        <source id="videosource" src="" type="video/mp4">
+        <source id="videosource" src="{{ video_link }}" type="video/mp4">
         Your browser does not support the video tag.
     </video>
     

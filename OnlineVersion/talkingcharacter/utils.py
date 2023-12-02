@@ -14,7 +14,7 @@ USERNAME = secrets.USERNAME_DID
 PASSWORD = secrets.PASSWORD_DID
 TOKEN_DID = secrets.TOKEN_DID
 Newest_link = 'link.link@link.com'
-ngrok_url='https://a305-80-187-101-64.ngrok-free.app'
+ngrok_url=os.environ.get('NGROK_URL')
 # Shared audio queue for the entire application
 audio_queue = queue.Queue()
 # Presumably, other supporting functions will be here like get_chatgpt_response and make_video
@@ -76,8 +76,8 @@ class video:
         return True
 
 
-
-    def get_video(request):
+    @staticmethod
+    def get_video(payload):
         print("getvideofuntion is now running")
         try:
             response = requests.get(video.videoID_URL, auth=HTTPBasicAuth( USERNAME, PASSWORD))

@@ -13,6 +13,7 @@ public_url = ngrok.connect(8000)
 host = public_url.public_url.split('//')[1].split(':')[0]
 print(f"public url: {public_url}")
 usable_url = public_url.public_url.split('"')[0]
+os.environ['NGROK_URL'] = usable_url
 print(usable_url)
 
 # Setzen Sie die URL in Ihren Utils (falls erforderlich)
