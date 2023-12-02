@@ -12,8 +12,9 @@ import openai
 NUM = 0
 USERNAME = secrets.USERNAME_DID
 PASSWORD = secrets.PASSWORD_DID
-adress = f"{secrets.NGROK_URL}/webhook/"
+TOKEN_DID = secrets.TOKEN_DID
 Newest_link = 'link.link@link.com'
+ngrok_url='https://a305-80-187-101-64.ngrok-free.app'
 # Shared audio queue for the entire application
 audio_queue = queue.Queue()
 # Presumably, other supporting functions will be here like get_chatgpt_response and make_video
@@ -40,32 +41,25 @@ class video:
     videoID_URL = ""
     #this functions' code is mostly copied from https://docs.d-id.com/reference/overview  
     def request_video(TEXT, self):
-        global Newest_link
+        global Newest_link, ngrok_url, TOKEN_DID
         url = "https://api.d-id.com/talks"
         payload = {
             "script": {
                 "type": "text",
-                "input": TEXT,
-                "provider": {
-                    "type": "microsoft",
-                    "voice_id": "en-US-JennyNeural"
-                }
-            },
-            "face": {
-                "top_left": [5, -5],
-                "face_id": "1",
-                "size": 512
+                "input": TEXT  # Stellen Sie sicher, dass TEXT korrekt definiert ist
             },
             "source_url": "https://i.pinimg.com/564x/e7/d8/cd/e7d8cdfc7c14420aa6a46b9792806b83.jpg",
-            "webhook": f"{adress}",
-            
+            "webhook": f"{ngrok_url}/webhook/"  # Stellen Sie sicher, dass ngrok_url korrekt definiert ist
+        }
 
-        }
         headers = {
-            "accept": "application/json",
-            "content-type": "application/json"
+            "accept-encoding": "application/json",
+            "content-type": "application/json",
+            "Authorization": f"Basic {TOKEN_DID}"
         }
-        response = requests.post(url, payload, headers=headers, auth=HTTPBasicAuth( USERNAME, PASSWORD))
+
+        response = requests.post(url, json.dumps(payload), headers=headers)
+        
         print(response.text)
         
         #this part converts the json thing to a dictionary so i can load the id.
@@ -77,15 +71,21 @@ class video:
             return TypeError
         url = f"https://api.d-id.com/talks/{talk_id}"    
         video.videoID_URL = url
+        
         print(video.videoID_URL)
         return True
 
 
 
-    def get_video(self):
-        print("getvideofuntion")
-        response = requests.get(video.videoID_URL, auth=HTTPBasicAuth( USERNAME, PASSWORD))  # replace with your credentials
-        #print(response.text) #this prints the fatass error message, its mostly facedetection error. Its because its the exact same prompt multiple times with the same text.
+    def get_video(request):
+        print("getvideofuntion is now running")
+        try:
+            response = requests.get(video.videoID_URL, auth=HTTPBasicAuth( USERNAME, PASSWORD))
+        except Exception as E:
+            print(E)
+            return
+        
+
         # If the video is returned in the response
         response_string2 = response.text
         response_dict2 = json.loads(response_string2)
@@ -96,8 +96,14 @@ class video:
     
 
 
-#def main(Text):
-#    x = make_video(Text)
+"""
+def test(Text):
+    video.request_video(f"{Text}")
+    time.sleep(5)
+    video.get_video()
+"""
+
+
 
 
 

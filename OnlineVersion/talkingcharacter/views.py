@@ -3,13 +3,13 @@ from django.views.generic import TemplateView
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_POST
+from django.views.decorators.http import require_POST, require_http_methods
 from .models import ServerStatus
 from django.utils.decorators import method_decorator
 from django.views import View
 import json
-from .utils import video, Newest_link
-
+from .utils import video, get_chatgpt_response, Newest_link
+import logging
 
 status_text = "standard"
 
@@ -18,25 +18,25 @@ status_text = "standard"
 @method_decorator(csrf_exempt, name='dispatch')
 class ProcessTranscriptView(View):
 
-    #I still have to check if D-ID acutally sends a post- and not a get request 
+    
     def post(self, request):
         global status_text, Newest_link, new_status, transcript
         data = json.loads(request.body)
         transcript = data.get('transcript', '')
-        
+        gptResponse = get_chatgpt_response(transcript)
         try:
-            x = video.request_video(transcript, self)   
+            x = video.request_video(gptResponse, self)   
         except Exception as E:
-            print(E + "video.requestvideo didnt work")
-            return JsonResponse({"something with the video request went wrong"})
-        status_text = "The video has actually been processed"
-        print("the video has actually been processed")
+            print(E)
+            return JsonResponse({"message": "something with the video request went wrong"})
+        status_text = "The video has actually been requested"
+        print(status_text)
 
-        new_status = "The video has actually been processed"
+        new_status = "The video has actually been requested"
 
         # For demonstration purposes, we'll just echo it back
         
-        return JsonResponse({"message": "Audio received successfully!"})
+        return JsonResponse({"message": "Script received successfully!"})
 
 class CharacterView(TemplateView):
     template_name = "index.html"
@@ -69,19 +69,22 @@ def update_server_status(request):
  
     
 @method_decorator(csrf_exempt, name='dispatch')
-class WebhookView(View):
-
-    def post(self, request):
+@require_http_methods(["GET", "POST"])
+def WebhookReceiver(request):
+#I still have to check if D-ID acutally sends a post- and not a get request 
+        logging.basicConfig(filename='webhook.log', level=logging.INFO)
+        logging.info('Webhook Response: %s', {'status': 'webhook worked'})
+        print(request)
         payload = request.body
-        print(payload)
-        link = video.get_video(request)
+        
+        link = video.get_video(payload)
         CharacterView.updateview(link)
+
+        
         return JsonResponse({'status':'webhook worked'}, safe=False)
     
-    def get(self, request):
-        link = video.get_video(request)
-        CharacterView.updateview(link)
-        return JsonResponse({'status':'webhook worked'}, safe=False)
+
+
     
 
 

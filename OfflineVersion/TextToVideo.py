@@ -31,7 +31,7 @@ def make_video(TEXT, Num):
         },
         #"persist": True, # optional, um das Video dauerhaft zu speichern
         "source_url": "https://i.pinimg.com/564x/e7/d8/cd/e7d8cdfc7c14420aa6a46b9792806b83.jpg",
-        "webhook": "https://host.domain.tld/to/webhook"
+        "webhook": "https://c30d-2a02-aa16-517b-2000-2de9-6b7-31f2-a3f3.ngrok.io/webhook/"
         #it always says facedetection error ,i dont know why.
     }
     headers = {

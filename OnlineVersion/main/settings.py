@@ -136,7 +136,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 if os.environ.get('DJANGO_DEVELOPMENT'):
     ALLOWED_HOSTS=['*']
 else:
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.ngrok.io']
-#ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', 'localhost').split(',')
+    ALLOWED_HOSTS = ['*']
 
+#'localhost', '127.0.0.1', '.ngrok.io'
 
