@@ -1,4 +1,3 @@
-
 from django.views.generic import TemplateView
 from django.shortcuts import render
 from django.http import JsonResponse
@@ -8,7 +7,7 @@ from .models import ServerStatus
 from django.utils.decorators import method_decorator
 from django.views import View
 import json
-from .utils import video, get_chatgpt_response, Newest_link, update_video_link_and_set_done, create_video
+from .utils import video, get_chatgpt_response, Newest_link, update_video_link_and_set_done, create_video_db, ngrok_url
 import logging
 from .models import VideoLink
 from django.template.loader import render_to_string
@@ -18,7 +17,7 @@ from asgiref.sync import async_to_sync
 status_text = "standard"
 logging.basicConfig(filename='updateview.log', level=logging.INFO)
 logger = logging.getLogger(__name__)
-video_id = ""
+talkURL = ""
 
 #def startconversation(request)
 @method_decorator(csrf_exempt, name='dispatch')
@@ -26,37 +25,41 @@ class ProcessTranscriptView(View):
 
     
     def post(self, request):
-        global status_text, Newest_link, new_status, transcript, video_id
-        saverequest = request
+        global status_text, Newest_link, new_status, transcript, talkURL
         data = json.loads(request.body)
         transcript = data.get('transcript', '')
         gptResponse = get_chatgpt_response(transcript)
+        print(gptResponse)
         try:
-            x = video.request_video(gptResponse, self)
-            print(x)   
+            talkURL = video.request_video(gptResponse, self)
+            print(talkURL)   
         except Exception as E:
             print(E)
             return JsonResponse({"message": "something with the video request went wrong"})
         status_text = "The video has actually been requested"
         print(status_text)
 
-        new_status = "The video has actually been requested"
-        video_id = create_video('http://meinlink.com/video')
+
 
         # For demonstration purposes, we'll just echo it back
-        
-        return JsonResponse({"message": "Script received successfully!"})
+        try:
+            NewVideoID = create_video_db(talkURL)  # Ersetzen Sie your_input_data durch Ihre Eingabedaten
+            return JsonResponse({"message": status_text, "video_id": NewVideoID})
+        except Exception as e:
+            return JsonResponse({"error": f"Es gab einen Fehler: {str(e)}"})
 
+### now changed to get the video with the video ID
+@method_decorator(csrf_exempt, name='dispatch')
 def get_latest_video_link(request):
     # Das neueste Videoobjekt holen
-    latest_video = VideoLink.objects.all().order_by('-id').first()
+    parsed_request = json.loads(request.body)
+    talkURLRequest = parsed_request.get('talkURL', None)
+    
 
-    if latest_video and latest_video.status == 'DONE':
-        # Wenn das neueste Video den Status 'DONE' hat, verwenden Sie dessen Link
-        latest_video_link = latest_video.video_link
-        context = {'video_link': latest_video_link}
+    if talkURLRequest:
+        context = {'Endresult_link': talkURLRequest.video_link, 'status': talkURLRequest.status,}
         logger.info(f"Gegebener Context zum Neu-Rendern: {context}")
-        return render(request, "index.html", context)
+        return JsonResponse(context)
     else:
         # Wenn das neueste Video nicht den Status 'DONE' hat, geben Sie eine JsonResponse zurück
         return JsonResponse({"error": "Das neueste Video ist noch nicht fertig."})
@@ -115,15 +118,24 @@ def update_server_status(request):
 @method_decorator(csrf_exempt, name='dispatch')
 @require_http_methods(["GET", "POST"])
 def WebhookReceiver(request):
-        global video_id
+        global talkURL
 #I still have to check if D-ID acutally sends a post- and not a get request 
         logging.basicConfig(filename='webhook.log', level=logging.INFO)
         logging.info('Webhook Response: %s', {'status': 'webhook worked'})
-        print(request)
+        
         payload = request.body
+        print(payload)
+        json_string = payload.decode('utf-8')
 
-        link = video.get_video(payload)
-        update_video_link_and_set_done(video_id, link)
+        # Parsen Sie den String in ein Python-Dictionary
+        parsed_data = json.loads(json_string)
+
+        # Extrahieren Sie den Wert von 'result_url'
+        result_url = parsed_data.get('result_url')
+
+        print(result_url)
+   
+        update_video_link_and_set_done(talkURL, result_url)
         """
         # Senden der neuen Video-URL an alle verbundenen Websocket-Clients
         channel_layer = get_channel_layer()
@@ -137,7 +149,7 @@ def WebhookReceiver(request):
         )      
         """
         
-        return JsonResponse({'status':'webhook worked', 'video_link': link}, safe=False)
+        return JsonResponse({'status':'webhook worked', 'video_link': link}, safe=False) #this is sent to the D-ID Server
     
 
 

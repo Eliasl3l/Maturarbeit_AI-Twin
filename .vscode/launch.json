@@ -5,13 +5,13 @@
         "name": "Django",
         "type": "python",
         "request": "launch",
-        "cwd": "OnlineVersion",
         "program": "${workspaceFolder}/OnlineVersion/run_dev_server.py",
           "args": [
               "runserver",
               "9000"
           ],
-          "django": true,
+        "django": true,
+        "cwd": "OnlineVersion",
       },
     ]
   }

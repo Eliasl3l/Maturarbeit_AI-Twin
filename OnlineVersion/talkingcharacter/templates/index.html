@@ -52,7 +52,9 @@
         .then(response => response.json())
         .then(data => {
             // Access video_link from the data object
-            let video_link = data.video_link;
+            let video_id = data.video_id;
+            console.log(video_id)
+            /*
             if (video_link !== undefined) {
                 document.getElementById("videosource").src = video_link;
             } 
@@ -63,6 +65,7 @@
             let videoplayer = document.getElementById("videoplayer");
             videoplayer.load();
             videoplayer.play();
+            */
             // Indicate that the server has processed the data
             document.getElementById("status").innerText = "Incoming data was processed by server";
         })
@@ -78,31 +81,63 @@
                 });
             }, 2000);
         });
-        async function fetchNewestVideo() {
-            let video = null;
-            while (!video) {
+
+      
+        
+        
+        async function fetchNewestVideo(video_id) {
+            while (true) {
                 try {
-                    const response = await fetch('{{ utils.ngrok_url }}/newest_video');
+                    const response = await fetch('/newest_video', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                            'X-CSRFToken': getCookie('csrftoken')
+                        },
+                        body: JSON.stringify({ talkURL: video_id })
+                    });
                     if (response.ok) {
-                        const data = await response.json();
-                        if (data.video) {
-                            video = data.video;
+                        if (response.headers.get('Content-Type').includes('application/json')) {
+                            // Handhabung der JsonResponse
+                            const data = await response.json();
+                            if (data.status=="DONE") {
+                                if (data.video_link !== undefined) {
+                                    document.getElementById("videosource").src = data.video_link;
+                                } 
+                                else {
+                                    console.error("Video link is undefined");
+                                    document.getElementById("status").innerText = "Error: Video link is undefined";
+                                }
+                                let videoplayer = document.getElementById("videoplayer");
+                                videoplayer.load();
+                                videoplayer.play();
+                                // Hier können Sie Aktionen ausführen, wenn ein Video gefunden wurde
+                                return data.video;
+                            } else {
+                                // Wenn keine Videoinformation vorhanden ist, warten und erneut versuchen
+                                await new Promise(resolve => setTimeout(resolve, 2000));
+                            }
+                        } else if (response.headers.get('Content-Type').includes('text/html')) {
+                            // Handhabung der gerenderten HTML-Vorlage
+                            const html = await response.text();
+                            // Verarbeiten Sie das empfangene HTML, z.B. Anzeigen im DOM
+                            document.getElementById('videoContainer').innerHTML = html;
                             break;
                         }
                     }
                 } catch (error) {
                     console.error('Fehler beim Abrufen des neuesten Videos:', error);
+                    await new Promise(resolve => setTimeout(resolve, 2000));
                 }
-                // Warten Sie eine kurze Zeit, bevor Sie es erneut versuchen, um den Server nicht zu überlasten
-                await new Promise(resolve => setTimeout(resolve, 2000));
             }
-            return video;
         }
-        
-        fetchNewestVideo().then(video => {
+
+        // Rufen Sie die Funktion mit der spezifischen videoId auf, die Sie von der vorherigen JsonResponse erhalten haben.
+        fetchNewestVideo(video_id).then(video => {
             console.log('Erhaltenes Video:', video);
         });
 
+        /*
         var socket = new WebSocket('ws://a3ae-2a02-aa16-517b-2000-d867-6b56-c9af-30ae.ngrok-free.app/ws/mywebsocket');
 
         socket.onmessage = function(event) {
@@ -122,7 +157,7 @@
         socket.onerror = function(error) {
             console.error('WebSocket error:', error);
         };
-
+        */
 }
 
 
@@ -143,7 +178,7 @@
 </head>
 <body>
     <video id="videoplayer" width="520" height="520" controls>
-        <source id="videosource" src="{{ video_link }}" type="video/mp4">
+        <source id="videosource" src="" type="video/mp4">
         Your browser does not support the video tag.
     </video>
     

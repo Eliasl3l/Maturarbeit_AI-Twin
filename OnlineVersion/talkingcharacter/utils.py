@@ -75,40 +75,41 @@ class video:
         video.videoID_URL = url
         
         print(video.videoID_URL)
-        return True
+        return url
 
 
     @staticmethod
-    def get_video(payload):
+    def get_video():
         print("getvideofuntion is now running")
         try:
             response = requests.get(video.videoID_URL, auth=HTTPBasicAuth( USERNAME, PASSWORD))
         except Exception as E:
             print(E)
-            return
+            return E
         
 
         # If the video is returned in the response
         response_string2 = response.text
         response_dict2 = json.loads(response_string2)
-        Video_id = []
-        Video_id = response_dict2['result_url']
-        print(Video_id)
-        return Video_id
+        result_url = []
+        result_url = response_dict2['result_url']
+        print(result_url)
+        return result_url
     
-def create_video(video_link):
-    new_video = VideoLink.objects.create(video_link=video_link, status='PENDING')
+def create_video_db(talkURL):
+    new_video = VideoLink.objects.create(video_link="default", talk_id=talkURL, status='PENDING')
+
     return new_video.id
 
-def update_video_link_and_set_done(video_id, new_link):
+def update_video_link_and_set_done(talkURL, new_link):
     try:
-        video = VideoLink.objects.get(id=video_id)
+        video = VideoLink.objects.get(talk_id=talkURL)
         video.video_link = new_link
         video.status = 'DONE'
         video.save()
         return video
     except VideoLink.DoesNotExist:
-        print("Video mit der ID {} nicht gefunden.".format(video_id))
+        print("Video mit der ID {} nicht gefunden.".format(talkURL))
         return None
 """
 def test(Text):

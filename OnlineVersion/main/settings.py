@@ -41,9 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'talkingcharacter',
-    #'channels',
 ]
-
+    #'channels',
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -142,6 +141,7 @@ else:
 #'localhost', '127.0.0.1', '.ngrok.io'
 
 #channels
+"""
 ASGI_APPLICATION = 'talkingcharacter.routing.application'
 CHANNEL_LAYERS = {
     'default': {
@@ -151,4 +151,6 @@ CHANNEL_LAYERS = {
         },
     },
 }
+"""
 
+CORS_ALLOW_ALL_ORIGINS = True
