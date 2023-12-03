@@ -1,0 +1,289 @@
+WARNING:django.request:Not Found: /
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /view/
+WARNING:django.request:Not Found: /link.link@link.com
+INFO:root:context: {'status': 'link was found from get_latest_video_link'}
+INFO:root:context: {'status': 'link was found from get_latest_video_link'}
+INFO:root:context: {'status': 'link was found from get_latest_video_link'}
+INFO:root:context: {'status': 'link was found from get_latest_video_link'}
+INFO:root:Webhook Response: {'status': 'webhook worked'}
+INFO:root:context: {'status': 'link was found from get_latest_video_link'}
+INFO:root:context: {'status': 'link was found from get_latest_video_link'}
+INFO:root:context: {'status': 'link was found from get_latest_video_link'}
+INFO:root:context: {'status': 'link was found from get_latest_video_link'}
+INFO:root:context: {'status': 'link was found from get_latest_video_link'}
+INFO:root:context: {'status': 'link was found from get_latest_video_link'}
+INFO:root:context: {'status': 'link was found from get_latest_video_link'}
+INFO:root:context: {'status': 'link was found from get_latest_video_link'}
+INFO:root:context: {'status': 'link was found from get_latest_video_link'}
+INFO:root:context: {'status': 'link was found from get_latest_video_link'}
+INFO:root:context: {'status': 'link was found from get_latest_video_link'}
+INFO:root:context: {'status': 'link was found from get_latest_video_link'}
+INFO:root:context: {'status': 'link was found from get_latest_video_link'}
+INFO:root:context: {'status': 'link was found from get_latest_video_link'}
+WARNING:django.request:Not Found: /
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /link.link@link.com
+INFO:talkingcharacter.views:gegebener context zum neu rendern: {'video_link': 'link.link@link.com'}
+INFO:talkingcharacter.views:gegebener context zum neu rendern: {'video_link': 'link.link@link.com'}
+INFO:root:Webhook Response: {'status': 'webhook worked'}
+INFO:talkingcharacter.views:gegebener context zum neu rendern: {'video_link': 'link.link@link.com'}
+INFO:talkingcharacter.views:gegebener context zum neu rendern: {'video_link': 'link.link@link.com'}
+INFO:talkingcharacter.views:gegebener context zum neu rendern: {'video_link': 'link.link@link.com'}
+INFO:talkingcharacter.views:gegebener context zum neu rendern: {'video_link': 'link.link@link.com'}
+INFO:talkingcharacter.views:gegebener context zum neu rendern: {'video_link': 'link.link@link.com'}
+INFO:talkingcharacter.views:gegebener context zum neu rendern: {'video_link': 'link.link@link.com'}
+INFO:talkingcharacter.views:gegebener context zum neu rendern: {'video_link': 'link.link@link.com'}
+INFO:talkingcharacter.views:gegebener context zum neu rendern: {'video_link': 'link.link@link.com'}
+INFO:talkingcharacter.views:gegebener context zum neu rendern: {'video_link': 'link.link@link.com'}
+INFO:talkingcharacter.views:gegebener context zum neu rendern: {'video_link': 'link.link@link.com'}
+WARNING:django.request:Not Found: /
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /link.link@link.com
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+ERROR:django.request:Internal Server Error: /newest_video/
+Traceback (most recent call last):
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\Documents\GitHub\Maturaarbeit_TalkingCharacter\OnlineVersion\talkingcharacter\views.py", line 75, in updateview
+    logger.info(f"Erhaltener Link bei  updateview: {link}")
+                                                    ^^^^
+UnboundLocalError: cannot access local variable 'link' where it is not associated with a value
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+ERROR:django.request:Internal Server Error: /newest_video/
+Traceback (most recent call last):
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\Documents\GitHub\Maturaarbeit_TalkingCharacter\OnlineVersion\talkingcharacter\views.py", line 75, in updateview
+    logger.info(f"Erhaltener Link bei  updateview: {link}")
+                                                    ^^^^
+UnboundLocalError: cannot access local variable 'link' where it is not associated with a value
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+ERROR:django.request:Internal Server Error: /newest_video/
+Traceback (most recent call last):
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\Documents\GitHub\Maturaarbeit_TalkingCharacter\OnlineVersion\talkingcharacter\views.py", line 75, in updateview
+    logger.info(f"Erhaltener Link bei  updateview: {link}")
+                                                    ^^^^
+UnboundLocalError: cannot access local variable 'link' where it is not associated with a value
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+ERROR:django.request:Internal Server Error: /newest_video/
+Traceback (most recent call last):
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\Documents\GitHub\Maturaarbeit_TalkingCharacter\OnlineVersion\talkingcharacter\views.py", line 75, in updateview
+    logger.info(f"Erhaltener Link bei  updateview: {link}")
+                                                    ^^^^
+UnboundLocalError: cannot access local variable 'link' where it is not associated with a value
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+ERROR:django.request:Internal Server Error: /newest_video/
+Traceback (most recent call last):
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\Documents\GitHub\Maturaarbeit_TalkingCharacter\OnlineVersion\talkingcharacter\views.py", line 75, in updateview
+    logger.info(f"Erhaltener Link bei  updateview: {link}")
+                                                    ^^^^
+UnboundLocalError: cannot access local variable 'link' where it is not associated with a value
+WARNING:django.request:Not Found: /
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /link.link@link.com
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+INFO:talkingcharacter.views:Erhaltener Link bei  updateview: link.link@link.com
+ERROR:django.request:Internal Server Error: /newest_video/
+Traceback (most recent call last):
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view talkingcharacter.views.updateview didn't return an HttpResponse object. It returned None instead.
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+INFO:talkingcharacter.views:Erhaltener Link bei  updateview: link.link@link.com
+ERROR:django.request:Internal Server Error: /newest_video/
+Traceback (most recent call last):
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view talkingcharacter.views.updateview didn't return an HttpResponse object. It returned None instead.
+WARNING:django.request:Not Found: /link.link@link.com
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+INFO:talkingcharacter.views:Erhaltener Link bei  updateview: link.link@link.com
+ERROR:django.request:Internal Server Error: /newest_video/
+Traceback (most recent call last):
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view talkingcharacter.views.updateview didn't return an HttpResponse object. It returned None instead.
+INFO:root:Webhook Response: {'status': 'webhook worked'}
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+INFO:talkingcharacter.views:Erhaltener Link bei  updateview: link.link@link.com
+ERROR:django.request:Internal Server Error: /newest_video/
+Traceback (most recent call last):
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view talkingcharacter.views.updateview didn't return an HttpResponse object. It returned None instead.
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+INFO:talkingcharacter.views:Erhaltener Link bei  updateview: link.link@link.com
+ERROR:django.request:Internal Server Error: /newest_video/
+Traceback (most recent call last):
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view talkingcharacter.views.updateview didn't return an HttpResponse object. It returned None instead.
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+INFO:talkingcharacter.views:Erhaltener Link bei  updateview: link.link@link.com
+ERROR:django.request:Internal Server Error: /newest_video/
+Traceback (most recent call last):
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view talkingcharacter.views.updateview didn't return an HttpResponse object. It returned None instead.
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+INFO:talkingcharacter.views:Erhaltener Link bei  updateview: link.link@link.com
+ERROR:django.request:Internal Server Error: /newest_video/
+Traceback (most recent call last):
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view talkingcharacter.views.updateview didn't return an HttpResponse object. It returned None instead.
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+INFO:talkingcharacter.views:Erhaltener Link bei  updateview: link.link@link.com
+ERROR:django.request:Internal Server Error: /newest_video/
+Traceback (most recent call last):
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view talkingcharacter.views.updateview didn't return an HttpResponse object. It returned None instead.
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+INFO:talkingcharacter.views:Erhaltener Link bei  updateview: link.link@link.com
+ERROR:django.request:Internal Server Error: /newest_video/
+Traceback (most recent call last):
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view talkingcharacter.views.updateview didn't return an HttpResponse object. It returned None instead.
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+INFO:talkingcharacter.views:Erhaltener Link bei  updateview: link.link@link.com
+ERROR:django.request:Internal Server Error: /newest_video/
+Traceback (most recent call last):
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view talkingcharacter.views.updateview didn't return an HttpResponse object. It returned None instead.
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+INFO:talkingcharacter.views:Erhaltener Link bei  updateview: link.link@link.com
+ERROR:django.request:Internal Server Error: /newest_video/
+Traceback (most recent call last):
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view talkingcharacter.views.updateview didn't return an HttpResponse object. It returned None instead.
+WARNING:django.request:Not Found: /
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /link.link@link.com
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+INFO:talkingcharacter.views:Erhaltener Link bei  updateview: link.link@link.com
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+INFO:talkingcharacter.views:Erhaltener Link bei  updateview: link.link@link.com
+INFO:root:Webhook Response: {'status': 'webhook worked'}
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+INFO:talkingcharacter.views:Erhaltener Link bei  updateview: link.link@link.com
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+INFO:talkingcharacter.views:Erhaltener Link bei  updateview: link.link@link.com
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+INFO:talkingcharacter.views:Erhaltener Link bei  updateview: link.link@link.com
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+INFO:talkingcharacter.views:Erhaltener Link bei  updateview: link.link@link.com
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+INFO:talkingcharacter.views:Erhaltener Link bei  updateview: link.link@link.com
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+INFO:talkingcharacter.views:Erhaltener Link bei  updateview: link.link@link.com
+WARNING:django.request:Not Found: /link.link@link.com
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+INFO:talkingcharacter.views:Erhaltener Link bei  updateview: link.link@link.com
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+INFO:talkingcharacter.views:Erhaltener Link bei  updateview: link.link@link.com
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+INFO:talkingcharacter.views:Erhaltener Link bei  updateview: link.link@link.com
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+INFO:talkingcharacter.views:Erhaltener Link bei  updateview: link.link@link.com
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+INFO:talkingcharacter.views:Erhaltener Link bei  updateview: link.link@link.com
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+INFO:talkingcharacter.views:Erhaltener Link bei  updateview: link.link@link.com
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+INFO:talkingcharacter.views:Erhaltener Link bei  updateview: link.link@link.com
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+INFO:talkingcharacter.views:Erhaltener Link bei  updateview: link.link@link.com
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+INFO:talkingcharacter.views:Erhaltener Link bei  updateview: link.link@link.com
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+INFO:talkingcharacter.views:Erhaltener Link bei  updateview: link.link@link.com
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+INFO:talkingcharacter.views:Erhaltener Link bei  updateview: link.link@link.com
+INFO:talkingcharacter.views:updateview Methode aufgerufen
+INFO:talkingcharacter.views:Erhaltener Link bei  updateview: link.link@link.com

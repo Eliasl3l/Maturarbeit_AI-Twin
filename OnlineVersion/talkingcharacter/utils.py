@@ -6,6 +6,8 @@ import json
 import time
 from . import secrets
 import openai
+from .models import VideoLink
+
 
 
 
@@ -94,8 +96,20 @@ class video:
         print(Video_id)
         return Video_id
     
+def create_video(video_link):
+    new_video = VideoLink.objects.create(video_link=video_link, status='PENDING')
+    return new_video.id
 
-
+def update_video_link_and_set_done(video_id, new_link):
+    try:
+        video = VideoLink.objects.get(id=video_id)
+        video.video_link = new_link
+        video.status = 'DONE'
+        video.save()
+        return video
+    except VideoLink.DoesNotExist:
+        print("Video mit der ID {} nicht gefunden.".format(video_id))
+        return None
 """
 def test(Text):
     video.request_video(f"{Text}")

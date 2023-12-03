@@ -70,6 +70,38 @@
             // Indicate if there's an error
             document.getElementById("status").innerText = "Error: " + error;
         })
+        .finally(() => {
+            // Wait for 2 seconds before starting the fetchNewestVideo loop
+            setTimeout(() => {
+                fetchNewestVideo().then(video => {
+                    console.log('Erhaltenes Video:', video);
+                });
+            }, 2000);
+        });
+        async function fetchNewestVideo() {
+            let video = null;
+            while (!video) {
+                try {
+                    const response = await fetch('{{ utils.ngrok_url }}/newest_video');
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (data.video) {
+                            video = data.video;
+                            break;
+                        }
+                    }
+                } catch (error) {
+                    console.error('Fehler beim Abrufen des neuesten Videos:', error);
+                }
+                // Warten Sie eine kurze Zeit, bevor Sie es erneut versuchen, um den Server nicht zu überlasten
+                await new Promise(resolve => setTimeout(resolve, 2000));
+            }
+            return video;
+        }
+        
+        fetchNewestVideo().then(video => {
+            console.log('Erhaltenes Video:', video);
+        });
 
         var socket = new WebSocket('ws://a3ae-2a02-aa16-517b-2000-d867-6b56-c9af-30ae.ngrok-free.app/ws/mywebsocket');
 
