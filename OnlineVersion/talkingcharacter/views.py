@@ -31,8 +31,7 @@ class ProcessTranscriptView(View):
         gptResponse = get_chatgpt_response(transcript)
         print(gptResponse)
         try:
-            talkURL = video.request_video(gptResponse, self)
-            print(talkURL)   
+            talk_id = video.request_video(gptResponse, self)
         except Exception as E:
             print(E)
             return JsonResponse({"message": "something with the video request went wrong"})
@@ -43,8 +42,8 @@ class ProcessTranscriptView(View):
 
         # For demonstration purposes, we'll just echo it back
         try:
-            NewVideoID = create_video_db(talkURL)  # Ersetzen Sie your_input_data durch Ihre Eingabedaten
-            return JsonResponse({"message": status_text, "video_id": NewVideoID})
+            create_video_db(talk_id)  # Ersetzen Sie your_input_data durch Ihre Eingabedaten
+            return JsonResponse({"message": status_text, "video_id": talk_id})
         except Exception as e:
             return JsonResponse({"error": f"Es gab einen Fehler: {str(e)}"})
 
@@ -53,11 +52,13 @@ class ProcessTranscriptView(View):
 def get_latest_video_link(request):
     # Das neueste Videoobjekt holen
     parsed_request = json.loads(request.body)
-    talkURLRequest = parsed_request.get('talkURL', None)
-    
-
+    talk_id = parsed_request.get('talk_id', None)
+    print(talk_id)
+    logger.info(f"talkURLRequest: {talk_id}")
+    talkURLRequest = VideoLink.objects.get(video_id=talk_id)
+    print(talkURLRequest)
     if talkURLRequest:
-        context = {'Endresult_link': talkURLRequest.video_link, 'status': talkURLRequest.status,}
+        context = {'video_link': talkURLRequest.video_link, 'status': talkURLRequest.status,}
         logger.info(f"Gegebener Context zum Neu-Rendern: {context}")
         return JsonResponse(context)
     else:
@@ -118,7 +119,6 @@ def update_server_status(request):
 @method_decorator(csrf_exempt, name='dispatch')
 @require_http_methods(["GET", "POST"])
 def WebhookReceiver(request):
-        global talkURL
 #I still have to check if D-ID acutally sends a post- and not a get request 
         logging.basicConfig(filename='webhook.log', level=logging.INFO)
         logging.info('Webhook Response: %s', {'status': 'webhook worked'})
@@ -132,24 +132,14 @@ def WebhookReceiver(request):
 
         # Extrahieren Sie den Wert von 'result_url'
         result_url = parsed_data.get('result_url')
+        talk_id = parsed_data.get('id')
 
-        print(result_url)
+        print(result_url + " this is the result url")
    
-        update_video_link_and_set_done(talkURL, result_url)
-        """
-        # Senden der neuen Video-URL an alle verbundenen Websocket-Clients
-        channel_layer = get_channel_layer()
-        group_name = 'group_name'  # Name der Gruppe, der alle Websocket-Clients zugeordnet sind
-        async_to_sync(channel_layer.group_send)(
-            group_name,
-            {
-                'type': 'send_video_url',
-                'video_url': link
-            }
-        )      
-        """
+        update_video_link_and_set_done(talk_id, result_url)
+
         
-        return JsonResponse({'status':'webhook worked', 'video_link': link}, safe=False) #this is sent to the D-ID Server
+        return JsonResponse({'status':'webhook worked', 'video_link': result_url}, safe=False) #this is sent to the D-ID Server
     
 
 

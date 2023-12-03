@@ -14,26 +14,38 @@
 <div id="status">welcome to the talking character</div>
 
 <!-- Button to start speech recognition -->
-<button onclick="recognition.start()">Start Listening</button>
+<button id="startButton">Start Listening</button>
 
 <!-- JavaScript for handling speech recognition and communication with server -->
 <script>
-    // Initialize the Web Speech API
-    let recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    let recognition;
 
-    recognition.onstart = function() {
+    function initSpeechRecognition() {
+        // Initialize the Web Speech API
+        recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+
+        recognition.onstart = function() {
         // Indicate that recognition has started
         document.getElementById("status").innerText = "Listening...";
-    };
+        };
 
-    recognition.onresult = function(event) {
-        let transcript = event.results[0][0].transcript;
+        recognition.onresult = function(event) {
+            let transcript = event.results[0][0].transcript;
 
-        // Indicate that speech was recognized
-        document.getElementById("status").innerText = "Recognized: " + transcript;
+            // Indicate that speech was recognized
+            document.getElementById("status").innerText = "Recognized: " + transcript;
+    
+            sendDataToServer(transcript);
+        };
+    }
 
-        sendDataToServer(transcript);
-    };
+    document.addEventListener("DOMContentLoaded", function() {
+        initSpeechRecognition();
+        document.getElementById("startButton").onclick = function() {
+            recognition.start();
+        };
+    });
+    let globalVideoId;
 
     function sendDataToServer(transcript) {
         // Indicate that the data is being sent to the server
@@ -52,113 +64,69 @@
         .then(response => response.json())
         .then(data => {
             // Access video_link from the data object
-            let video_id = data.video_id;
-            console.log(video_id)
-            /*
-            if (video_link !== undefined) {
-                document.getElementById("videosource").src = video_link;
-            } 
-            else {
-                console.error("Video link is undefined");
-                document.getElementById("status").innerText = "Error: Video link is undefined";
-            }
-            let videoplayer = document.getElementById("videoplayer");
-            videoplayer.load();
-            videoplayer.play();
-            */
+            const globalVideoId = data.video_id;
+            console.log(globalVideoId)
+
             // Indicate that the server has processed the data
             document.getElementById("status").innerText = "Incoming data was processed by server";
+
+                fetchNewestVideo(globalVideoId).then(video => {
+                    console.log('Erhaltenes Video:', video);
+                });
+
         })
         .catch(error => {
             // Indicate if there's an error
             document.getElementById("status").innerText = "Error: " + error;
-        })
-        .finally(() => {
-            // Wait for 2 seconds before starting the fetchNewestVideo loop
-            setTimeout(() => {
-                fetchNewestVideo().then(video => {
-                    console.log('Erhaltenes Video:', video);
-                });
-            }, 2000);
         });
 
-      
+       
+
+
         
         
         async function fetchNewestVideo(video_id) {
-            while (true) {
-                try {
-                    const response = await fetch('/newest_video', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                            'X-CSRFToken': getCookie('csrftoken')
-                        },
-                        body: JSON.stringify({ talkURL: video_id })
-                    });
-                    if (response.ok) {
-                        if (response.headers.get('Content-Type').includes('application/json')) {
-                            // Handhabung der JsonResponse
-                            const data = await response.json();
-                            if (data.status=="DONE") {
-                                if (data.video_link !== undefined) {
-                                    document.getElementById("videosource").src = data.video_link;
-                                } 
-                                else {
-                                    console.error("Video link is undefined");
-                                    document.getElementById("status").innerText = "Error: Video link is undefined";
-                                }
-                                let videoplayer = document.getElementById("videoplayer");
-                                videoplayer.load();
-                                videoplayer.play();
-                                // Hier können Sie Aktionen ausführen, wenn ein Video gefunden wurde
-                                return data.video;
-                            } else {
-                                // Wenn keine Videoinformation vorhanden ist, warten und erneut versuchen
-                                await new Promise(resolve => setTimeout(resolve, 2000));
+            try {
+                const requestBody = JSON.stringify({ talk_id: video_id });
+                console.log(requestBody);
+                const response = await fetch('/newest_video', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCookie('csrftoken')
+                    },
+                    body: requestBody
+                });
+
+                if (response.ok) {
+                    if (response.headers.get('Content-Type').includes('application/json')) {
+                        // Handhabung der JsonResponse
+                        const data = await response.json();
+                        console.log(data); 
+                        if (data.status=="DONE") {
+                            if (data.video_link !== undefined) {
+                                document.getElementById("videosource").src = data.video_link;
+                            } 
+                            else {
+                                console.error("Video link is undefined");
+                                document.getElementById("status").innerText = "Error: Video link is undefined";
                             }
-                        } else if (response.headers.get('Content-Type').includes('text/html')) {
-                            // Handhabung der gerenderten HTML-Vorlage
-                            const html = await response.text();
-                            // Verarbeiten Sie das empfangene HTML, z.B. Anzeigen im DOM
-                            document.getElementById('videoContainer').innerHTML = html;
-                            break;
+                            let videoplayer = document.getElementById("videoplayer");
+                            videoplayer.load();
+                            videoplayer.play();
+                           
+                        } else {
+                            // Wenn keine Videoinformation vorhanden ist, warten und erneut versuchen
+                            setTimeout(() => fetchNewestVideo(video_id), 2000);
                         }
-                    }
-                } catch (error) {
-                    console.error('Fehler beim Abrufen des neuesten Videos:', error);
-                    await new Promise(resolve => setTimeout(resolve, 2000));
+                    } 
                 }
+            } catch (error) {
+                console.error('Fehler beim Abrufen des neuesten Videos:', error);
+                //await new Promise(resolve => setTimeout(resolve, 20000));
             }
         }
-
-        // Rufen Sie die Funktion mit der spezifischen videoId auf, die Sie von der vorherigen JsonResponse erhalten haben.
-        fetchNewestVideo(video_id).then(video => {
-            console.log('Erhaltenes Video:', video);
-        });
-
-        /*
-        var socket = new WebSocket('ws://a3ae-2a02-aa16-517b-2000-d867-6b56-c9af-30ae.ngrok-free.app/ws/mywebsocket');
-
-        socket.onmessage = function(event) {
-            var data = JSON.parse(event.data);
-            if (data.video_link) {
-                var videoPlayer = document.getElementById('videoPlayer');
-                videoPlayer.src = data.video_link;
-                videoPlayer.load();
-                videoPlayer.play();
-            }
-        };
-    
-        socket.onopen = function(event) {
-            console.log('WebSocket connection established');
-        };
-    
-        socket.onerror = function(error) {
-            console.error('WebSocket error:', error);
-        };
-        */
-}
+    }
 
 
 

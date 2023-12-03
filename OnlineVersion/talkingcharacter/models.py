@@ -16,7 +16,7 @@ class ServerStatus(models.Model):
 
 class VideoLink(models.Model):
     video_link = models.URLField(max_length=200, default='https://8bf3-2a02-aa16-517b-2000-d867-6b56-c9af-30ae.ngrok-free.app/view')
-    talk_id = models.CharField(max_length=60, default="")
+    video_id = models.CharField(max_length=60, default="")
     STATUS_CHOICES = [
         ('DONE', 'Erledigt'),
         ('PENDING', 'Ausstehend')

@@ -71,11 +71,8 @@ class video:
             talk_id = response_dict['id']  # replace with your ID
         except KeyError:
             return TypeError
-        url = f"https://api.d-id.com/talks/{talk_id}"    
-        video.videoID_URL = url
-        
-        print(video.videoID_URL)
-        return url
+
+        return talk_id
 
 
     @staticmethod
@@ -96,20 +93,22 @@ class video:
         print(result_url)
         return result_url
     
-def create_video_db(talkURL):
-    new_video = VideoLink.objects.create(video_link="default", talk_id=talkURL, status='PENDING')
+def create_video_db(talk_id):
+    new_video = VideoLink.objects.create(video_link="default", video_id=talk_id, status='PENDING')
 
-    return new_video.id
+    return new_video.video_id
 
-def update_video_link_and_set_done(talkURL, new_link):
+def update_video_link_and_set_done(talk_id, new_link):
     try:
-        video = VideoLink.objects.get(talk_id=talkURL)
+        video = VideoLink.objects.get(video_id=talk_id)
+        print(video.video_link)
         video.video_link = new_link
         video.status = 'DONE'
         video.save()
+        print(new_link + " has been saved into the databank as new link")
         return video
     except VideoLink.DoesNotExist:
-        print("Video mit der ID {} nicht gefunden.".format(talkURL))
+        print("Video mit der ID {} nicht gefunden.".format(talk_id))
         return None
 """
 def test(Text):
