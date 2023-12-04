@@ -28,16 +28,18 @@ openai.api_key = secrets.OPENAI_KEY
 language = 'en'
 
 def get_chatgpt_response(query):
-    response = openai.Completion.create(
-        engine='text-davinci-003',
-        prompt=query,
-        max_tokens=1000,
-        n=1,
-        stop=None,
-        temperature=0.7
+    chat_completion = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {
+                "role": "user",
+                "content": query,
+            }
+        ]
     )
 
-    return response.choices[0].text.strip()
+
+    return chat_completion['choices'][0]['message']['content']
 
 class video:
     videoID_URL = ""
@@ -48,9 +50,13 @@ class video:
         payload = {
             "script": {
                 "type": "text",
-                "input": TEXT  # Stellen Sie sicher, dass TEXT korrekt definiert ist
+                "input": TEXT,  # Stellen Sie sicher, dass TEXT korrekt definiert ist
+                "provider":{
+                    "type":"elevenlabs",
+                    "voice_id":"CYw3kZ02Hs0563khs1Fj"
+                }
             },
-            "source_url": "https://i.pinimg.com/564x/e7/d8/cd/e7d8cdfc7c14420aa6a46b9792806b83.jpg",
+            "source_url": "https://create-images-results.d-id.com/google-oauth2%7C113737039728929273410/upl_Q5dA_a3eLK93IE1GLtNCQ/image.jpeg",
             "webhook": f"{ngrok_url}/webhook/"  # Stellen Sie sicher, dass ngrok_url korrekt definiert ist
         }
 

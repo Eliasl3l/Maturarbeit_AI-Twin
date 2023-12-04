@@ -28248,3 +28248,422 @@ INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'd
 INFO:root:Webhook Response: {'status': 'webhook worked'}
 INFO:talkingcharacter.views:talkURLRequest: tlk_epnSN91kJEGWgy4SSVRne
 INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'https://d-id-talks-prod.s3.us-west-2.amazonaws.com/google-oauth2%7C113737039728929273410/tlk_epnSN91kJEGWgy4SSVRne/1701637079896.mp4?AWSAccessKeyId=AKIA5CUMPJBIK65W6FGA&Expires=1701723483&Signature=NcHA2pInGwZWC4zPI%2BY%2BHupFLok%3D&X-Amzn-Trace-Id=Root%3D1-656cebdb-768493687501637e3d084272%3BParent%3Dc3a3eceb8b985166%3BSampled%3D1%3BLineage%3D6b931dd4%3A0', 'status': 'DONE'}
+WARNING:django.request:Not Found: /favicon.ico
+INFO:talkingcharacter.views:talkURLRequest: None
+ERROR:django.request:Internal Server Error: /newest_video
+Traceback (most recent call last):
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\utils\decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\Documents\GitHub\Maturaarbeit_TalkingCharacter\OnlineVersion\talkingcharacter\views.py", line 58, in get_latest_video_link
+    talkURLRequest = VideoLink.objects.get(video_id=talk_id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\query.py", line 637, in get
+    raise self.model.DoesNotExist(
+talkingcharacter.models.VideoLink.DoesNotExist: VideoLink matching query does not exist.
+INFO:django.utils.autoreload:C:\Users\41796\Documents\GitHub\Maturaarbeit_TalkingCharacter\OnlineVersion\talkingcharacter\utils.py changed, reloading.
+INFO:talkingcharacter.views:talkURLRequest: None
+ERROR:django.request:Internal Server Error: /newest_video
+Traceback (most recent call last):
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\utils\decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\Documents\GitHub\Maturaarbeit_TalkingCharacter\OnlineVersion\talkingcharacter\views.py", line 58, in get_latest_video_link
+    talkURLRequest = VideoLink.objects.get(video_id=talk_id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\query.py", line 637, in get
+    raise self.model.DoesNotExist(
+talkingcharacter.models.VideoLink.DoesNotExist: VideoLink matching query does not exist.
+WARNING:django.request:Not Found: /favicon.ico
+INFO:talkingcharacter.views:talkURLRequest: None
+ERROR:django.request:Internal Server Error: /newest_video
+Traceback (most recent call last):
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\utils\decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\Documents\GitHub\Maturaarbeit_TalkingCharacter\OnlineVersion\talkingcharacter\views.py", line 58, in get_latest_video_link
+    talkURLRequest = VideoLink.objects.get(video_id=talk_id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\41796\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\query.py", line 637, in get
+    raise self.model.DoesNotExist(
+talkingcharacter.models.VideoLink.DoesNotExist: VideoLink matching query does not exist.
+INFO:django.utils.autoreload:C:\Users\41796\Documents\GitHub\Maturaarbeit_TalkingCharacter\OnlineVersion\talkingcharacter\utils.py changed, reloading.
+INFO:talkingcharacter.views:talkURLRequest: tlk_iBWablhPjqtdEGsHJKsFD
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_iBWablhPjqtdEGsHJKsFD
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:root:Webhook Response: {'status': 'webhook worked'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_iBWablhPjqtdEGsHJKsFD
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'https://d-id-talks-prod.s3.us-west-2.amazonaws.com/google-oauth2%7C113737039728929273410/tlk_iBWablhPjqtdEGsHJKsFD/1701679436009.mp4?AWSAccessKeyId=AKIA5CUMPJBIK65W6FGA&Expires=1701765840&Signature=UgVklZzIfv1z7Anes64MrnCO7yg%3D&X-Amzn-Trace-Id=Root%3D1-656d9150-525fa9da1ab855e900af6de1%3BParent%3D854c63fc2c4ab3ab%3BSampled%3D1%3BLineage%3D6b931dd4%3A0', 'status': 'DONE'}
+WARNING:django.request:Not Found: /favicon.ico
+INFO:talkingcharacter.views:talkURLRequest: tlk_TR5Gljp4iVGC9477gN6Rs
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_TR5Gljp4iVGC9477gN6Rs
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_TR5Gljp4iVGC9477gN6Rs
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_TR5Gljp4iVGC9477gN6Rs
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:root:Webhook Response: {'status': 'webhook worked'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_TR5Gljp4iVGC9477gN6Rs
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'https://d-id-talks-prod.s3.us-west-2.amazonaws.com/google-oauth2%7C113737039728929273410/tlk_TR5Gljp4iVGC9477gN6Rs/1701679502687.mp4?AWSAccessKeyId=AKIA5CUMPJBIK65W6FGA&Expires=1701765912&Signature=slp0oZ47mo%2Fe9E4Rcuf4TQMnba0%3D&X-Amzn-Trace-Id=Root%3D1-656d9198-0d91e049181854f661ea9cce%3BParent%3Dff4d5066e41a9a9c%3BSampled%3D1%3BLineage%3D6b931dd4%3A0', 'status': 'DONE'}
+INFO:django.utils.autoreload:C:\Users\41796\Documents\GitHub\Maturaarbeit_TalkingCharacter\OnlineVersion\talkingcharacter\utils.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\41796\Documents\GitHub\Maturaarbeit_TalkingCharacter\OnlineVersion\talkingcharacter\utils.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\41796\Documents\GitHub\Maturaarbeit_TalkingCharacter\OnlineVersion\talkingcharacter\utils.py changed, reloading.
+WARNING:django.request:Not Found: /favicon.ico
+INFO:talkingcharacter.views:talkURLRequest: tlk_NB-E1Z6CQy6i1yveQBgF4
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_NB-E1Z6CQy6i1yveQBgF4
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_NB-E1Z6CQy6i1yveQBgF4
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:root:Webhook Response: {'status': 'webhook worked'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_NB-E1Z6CQy6i1yveQBgF4
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'https://d-id-talks-prod.s3.us-west-2.amazonaws.com/google-oauth2%7C113737039728929273410/tlk_NB-E1Z6CQy6i1yveQBgF4/1701682303754.mp4?AWSAccessKeyId=AKIA5CUMPJBIK65W6FGA&Expires=1701768708&Signature=HODroGXKEEpTlMObcNi%2FPA2VsIw%3D&X-Amzn-Trace-Id=Root%3D1-656d9c84-5ef755345478309d13f9164d%3BParent%3Dfc1af6a52230616b%3BSampled%3D1%3BLineage%3D6b931dd4%3A0', 'status': 'DONE'}
+WARNING:django.request:Not Found: /favicon.ico
+INFO:django.utils.autoreload:C:\Users\41796\Documents\GitHub\Maturaarbeit_TalkingCharacter\OnlineVersion\talkingcharacter\utils.py changed, reloading.
+INFO:talkingcharacter.views:talkURLRequest: tlk_LVzQjHR9z3cVFdVjgJT8c
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_LVzQjHR9z3cVFdVjgJT8c
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_LVzQjHR9z3cVFdVjgJT8c
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_LVzQjHR9z3cVFdVjgJT8c
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_LVzQjHR9z3cVFdVjgJT8c
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_LVzQjHR9z3cVFdVjgJT8c
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_LVzQjHR9z3cVFdVjgJT8c
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_LVzQjHR9z3cVFdVjgJT8c
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_LVzQjHR9z3cVFdVjgJT8c
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_LVzQjHR9z3cVFdVjgJT8c
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_LVzQjHR9z3cVFdVjgJT8c
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_LVzQjHR9z3cVFdVjgJT8c
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_LVzQjHR9z3cVFdVjgJT8c
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_LVzQjHR9z3cVFdVjgJT8c
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_LVzQjHR9z3cVFdVjgJT8c
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_LVzQjHR9z3cVFdVjgJT8c
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_LVzQjHR9z3cVFdVjgJT8c
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_LVzQjHR9z3cVFdVjgJT8c
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_LVzQjHR9z3cVFdVjgJT8c
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_LVzQjHR9z3cVFdVjgJT8c
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+WARNING:django.request:Not Found: /favicon.ico
+INFO:talkingcharacter.views:talkURLRequest: tlk_KDE2XoP3T3ad6HKuKtxNm
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_KDE2XoP3T3ad6HKuKtxNm
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_KDE2XoP3T3ad6HKuKtxNm
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_KDE2XoP3T3ad6HKuKtxNm
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_KDE2XoP3T3ad6HKuKtxNm
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_KDE2XoP3T3ad6HKuKtxNm
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_KDE2XoP3T3ad6HKuKtxNm
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_KDE2XoP3T3ad6HKuKtxNm
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_KDE2XoP3T3ad6HKuKtxNm
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_KDE2XoP3T3ad6HKuKtxNm
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_KDE2XoP3T3ad6HKuKtxNm
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_KDE2XoP3T3ad6HKuKtxNm
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+WARNING:django.request:Not Found: /favicon.ico
+INFO:talkingcharacter.views:talkURLRequest: tlk_-odJBV8wh906YLt8pKoEA
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_-odJBV8wh906YLt8pKoEA
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_-odJBV8wh906YLt8pKoEA
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_-odJBV8wh906YLt8pKoEA
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_-odJBV8wh906YLt8pKoEA
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_-odJBV8wh906YLt8pKoEA
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_-odJBV8wh906YLt8pKoEA
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_-odJBV8wh906YLt8pKoEA
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_-odJBV8wh906YLt8pKoEA
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_-odJBV8wh906YLt8pKoEA
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_-odJBV8wh906YLt8pKoEA
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_-odJBV8wh906YLt8pKoEA
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_-odJBV8wh906YLt8pKoEA
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+WARNING:django.request:Not Found: /favicon.ico
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:django.utils.autoreload:C:\Users\41796\Documents\GitHub\Maturaarbeit_TalkingCharacter\OnlineVersion\talkingcharacter\utils.py changed, reloading.
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_4hpDwePXKVvbKqBcBrrz4
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_4hpDwePXKVvbKqBcBrrz4
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_4hpDwePXKVvbKqBcBrrz4
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_4hpDwePXKVvbKqBcBrrz4
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:talkURLRequest: tlk_4hpDwePXKVvbKqBcBrrz4
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_4hpDwePXKVvbKqBcBrrz4
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_4hpDwePXKVvbKqBcBrrz4
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:talkURLRequest: tlk_4hpDwePXKVvbKqBcBrrz4
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_4hpDwePXKVvbKqBcBrrz4
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:talkURLRequest: tlk_4hpDwePXKVvbKqBcBrrz4
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_4hpDwePXKVvbKqBcBrrz4
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:talkURLRequest: tlk_4hpDwePXKVvbKqBcBrrz4
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_4hpDwePXKVvbKqBcBrrz4
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:talkURLRequest: tlk_4hpDwePXKVvbKqBcBrrz4
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:talkURLRequest: tlk_4hpDwePXKVvbKqBcBrrz4
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_4hpDwePXKVvbKqBcBrrz4
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:talkURLRequest: tlk_4hpDwePXKVvbKqBcBrrz4
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:talkURLRequest: tlk_4hpDwePXKVvbKqBcBrrz4
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_4hpDwePXKVvbKqBcBrrz4
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:talkURLRequest: tlk_4hpDwePXKVvbKqBcBrrz4
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_m8SesFTAtvJaFAj4Mzvco
+INFO:talkingcharacter.views:talkURLRequest: tlk_4hpDwePXKVvbKqBcBrrz4
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+WARNING:django.request:Not Found: /favicon.ico
+INFO:talkingcharacter.views:talkURLRequest: tlk_oUOYJv4O7rVY0YUmje4jk
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_oUOYJv4O7rVY0YUmje4jk
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:root:Webhook Response: {'status': 'webhook worked'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_oUOYJv4O7rVY0YUmje4jk
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'https://d-id-talks-prod.s3.us-west-2.amazonaws.com/google-oauth2%7C113737039728929273410/tlk_oUOYJv4O7rVY0YUmje4jk/1701683422268.mp4?AWSAccessKeyId=AKIA5CUMPJBIK65W6FGA&Expires=1701769826&Signature=FhOiyQqjW7TL0D%2BEl5gQHSOEYoc%3D&X-Amzn-Trace-Id=Root%3D1-656da0e2-6616cf8d48c7f72b404d48ce%3BParent%3Dea45e0724290bdb3%3BSampled%3D1%3BLineage%3D6b931dd4%3A0', 'status': 'DONE'}
+WARNING:django.request:Not Found: /favicon.ico
+INFO:django.utils.autoreload:C:\Users\41796\Documents\GitHub\Maturaarbeit_TalkingCharacter\OnlineVersion\talkingcharacter\utils.py changed, reloading.
+INFO:talkingcharacter.views:talkURLRequest: tlk_fDsmVMTBnJ6Tex7AQ_3ij
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_fDsmVMTBnJ6Tex7AQ_3ij
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'default', 'status': 'PENDING'}
+INFO:root:Webhook Response: {'status': 'webhook worked'}
+INFO:talkingcharacter.views:talkURLRequest: tlk_fDsmVMTBnJ6Tex7AQ_3ij
+INFO:talkingcharacter.views:Gegebener Context zum Neu-Rendern: {'video_link': 'https://d-id-talks-prod.s3.us-west-2.amazonaws.com/google-oauth2%7C113737039728929273410/tlk_fDsmVMTBnJ6Tex7AQ_3ij/1701683536637.mp4?AWSAccessKeyId=AKIA5CUMPJBIK65W6FGA&Expires=1701769941&Signature=XiDTiQQAuIzVEZw06%2FxoPF%2BdzhU%3D&X-Amzn-Trace-Id=Root%3D1-656da155-193b48830b3b4d7c0fd1e155%3BParent%3D98626b4ee9c5a3c3%3BSampled%3D1%3BLineage%3D6b931dd4%3A0', 'status': 'DONE'}
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico

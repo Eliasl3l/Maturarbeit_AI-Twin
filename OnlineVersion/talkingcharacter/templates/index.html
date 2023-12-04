@@ -7,11 +7,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Speech Recognition</title>
+    <style>
+        body, html {
+            height: 100%; /* Ensure the body takes up the full height of the viewport */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            background-color: black; /* Set the background color to black */
+            display: flex; /* Use flexbox to align children */
+            flex-direction: column; /* Stack children vertically */
+        }
+        #status {
+            text-align: center; /* Center the text inside the div */
+            width: 100%; /* Make the div span the full width of the viewport */
+            padding: 20px 0; /* Add some padding to the top and bottom */
+            background: #333; /* Give the status bar a distinct background */
+            color: white; /* Set the text color to white for visibility */
+            box-sizing: border-box; /* Include padding in the width calculation */
+        }
+        #startButton {
+            margin-top: 20px; /* Add margin to the top of the button */
+            align-self: center; /* Align the button to the center horizontally */
+        }
+    </style> 
 </head>
 <body>
 
 <!-- Display status -->
-<div id="status">welcome to the talking character</div>
+<div id="status">welcome to the AI Twin!</div>
 
 <!-- Button to start speech recognition -->
 <button id="startButton">Start Listening</button>
@@ -143,6 +165,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Page</title>
+    <style>
+        /* CSS to center the video */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #videoplayer {
+            width: 80%; /* Adjust the width as per requirement */
+            max-width: 800px; /* Maximum width */
+            height: 800px; /* Maintain aspect ratio */
+        }
+    </style>
 </head>
 <body>
     <video id="videoplayer" width="520" height="520" controls>
@@ -159,7 +196,7 @@
             border: 1px solid black;
             background-color: #e9e9e9;
             position: fixed;
-            bottom: 30;
+            top: 0;
             left: 0;
             padding: 5px;
             box-sizing: border-box;
