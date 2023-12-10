@@ -1,6 +1,7 @@
 import json
 from channels.generic.websocket import AsyncWebsocketConsumer
 
+#this would be for the websocket, which isn't implemented so far
 class MyConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         await self.accept()

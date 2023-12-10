@@ -106,7 +106,7 @@
 
 
         
-        
+        //inspired by ChatGPT
         async function fetchNewestVideo(video_id) {
             try {
                 const requestBody = JSON.stringify({ talk_id: video_id });
@@ -153,7 +153,7 @@
 
 
 
-
+    //inspired by chatgpt 3.5
     // Helper function to get CSRF token from cookies
     function getCookie(name) {
         let value = "; " + document.cookie;
@@ -210,6 +210,7 @@
         <span id="statusText">Loading...</span>
     </div>
     <script>
+        //inspired by ChatGPT
         function updateStatus() {
             fetch('/get_server_status/')
             .then(response => response.json())

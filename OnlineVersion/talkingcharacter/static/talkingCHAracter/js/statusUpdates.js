@@ -1,3 +1,6 @@
+//// this file isnt in use ///////////////////////////////////////////////////////////////////
+
+
 function updateStatus() {
     fetch('/get_server_status/')
     .then(response => response.json())

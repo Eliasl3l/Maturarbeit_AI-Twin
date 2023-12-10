@@ -1,3 +1,6 @@
+//this file isnt in use /////////////////////////////////////////////////////////////////////////
+
+
 // Initialize the Web Speech API
 let recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
 

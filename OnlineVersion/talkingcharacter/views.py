@@ -19,7 +19,8 @@ logging.basicConfig(filename='updateview.log', level=logging.INFO)
 logger = logging.getLogger(__name__)
 talkURL = ""
 
-#def startconversation(request)
+#this function receives the transcript of the speechrecognition made in the frontend, generates a chatgpt response and sends a requests to the d-id Server with the request_video funtion
+#afterwards it saves the received ID from response from D-ID  to the database
 @method_decorator(csrf_exempt, name='dispatch')
 class ProcessTranscriptView(View):
 
@@ -40,14 +41,15 @@ class ProcessTranscriptView(View):
 
 
 
-        # For demonstration purposes, we'll just echo it back
+        
         try:
-            create_video_db(talk_id)  # Ersetzen Sie your_input_data durch Ihre Eingabedaten
+            create_video_db(talk_id)  
             return JsonResponse({"message": status_text, "video_id": talk_id})
         except Exception as e:
             return JsonResponse({"error": f"Es gab einen Fehler: {str(e)}"})
 
-### now changed to get the video with the video ID
+### now changed to get the video with the video ID from the database
+#receives the Postrequests from the frontend which ask for a video url with the Video ID they provide
 @method_decorator(csrf_exempt, name='dispatch')
 def get_latest_video_link(request):
     # Das neueste Videoobjekt holen
@@ -65,9 +67,11 @@ def get_latest_video_link(request):
         # Wenn das neueste Video nicht den Status 'DONE' hat, geben Sie eine JsonResponse zurück
         return JsonResponse({"error": "Das neueste Video ist noch nicht fertig."})
 
+#this class is to refersh the page and load it with the right template
 class CharacterView(TemplateView):
     template_name = "index.html"
     
+    #this function isnt needed anymore
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         global Newest_link
