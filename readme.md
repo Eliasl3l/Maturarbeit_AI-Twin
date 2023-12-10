@@ -15,4 +15,6 @@ which makes that all the four parts run smoothly one after another so you can ha
 
 ## online Version
 mainly sustains out of the classical django structure with the main function in the app Talking_Character
-In this Version the functionality of the offline Version is moved into the utils.py file, except for speech recognition which is done in the frontend and part where the video url is requested from the D-ID Server, because it is now sent through a webhook. The client makes Post requests to the webapp until the video url is saved in the database and is sent to the client as a JsonResponse. Then the client plays the video. 
+In this Version the functionality of the offline Version is moved into the utils.py file, except for speech recognition which is done in the frontend and part where the video url is requested from the D-ID Server, because it is now sent through a webhook. The client makes Post requests to the webapp until the video url is saved in the database and is sent to the client as a JsonResponse. Then the client plays the video.
+
+Important: you can only run this localhost server if you have an OpenAI API acoount(paid), a D-ID subscription (paid) and an NGROK account (free)
