@@ -6,11 +6,12 @@ django.setup()
 from pyngrok import ngrok
 from django.conf import settings
 from talkingcharacter.utils import ngrok_url
+from talkingcharacter import secrets
 
 
 # inspired by https://ngrok.com/docs/
 # Setzen Sie hier Ihren Ngrok-Authentifizierungstoken ein
-ngrok.set_auth_token("2XdB8236H2lY5VzmcI6CRhqgjcS_3phFKBeidpaa3TXMjhL5Y")
+ngrok.set_auth_token(secrets.NGROK_AUTH_TOKEN)
 
 # Starten Sie den Ngrok-Prozess
 public_url = ngrok.connect(8000)

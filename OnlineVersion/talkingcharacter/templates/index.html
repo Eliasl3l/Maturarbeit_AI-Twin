@@ -15,6 +15,7 @@
             background-color: black; /* Set the background color to black */
             display: flex; /* Use flexbox to align children */
             flex-direction: column; /* Stack children vertically */
+            justify-content: space-between;
         }
         #status {
             text-align: center; /* Center the text inside the div */
@@ -25,8 +26,85 @@
             box-sizing: border-box; /* Include padding in the width calculation */
         }
         #startButton {
-            margin-top: 20px; /* Add margin to the top of the button */
+            justify-content: space-between;
             align-self: center; /* Align the button to the center horizontally */
+        }
+        #drop-area {
+            border: 2px dashed #ccc;
+            border-radius: 20px;
+            width: 300px;
+            margin: 0 auto 20px;
+            padding: 20px;
+            align-self: center; /* Center the drop area horizontally */
+            margin-top: auto;
+          }
+          .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #8ebf42;
+            cursor: pointer;
+            border-radius: 5px;
+            color: white;
+          }
+          #content {
+            display: flex; /* Use flexbox to create a row layout */
+            justify-content: center; /* Center the content horizontally */
+            align-items: center; /* Center the content vertically */
+            height: 80vh; /* Set a height for the content area */
+        }
+        
+        #video-container {
+            width: 80%; /* Adjust the width as per requirement */
+            max-width: 800px; /* Maximum width */
+            margin: 20px; /* Add some margin around the video */
+            z-index: 1; /* Ensure it's above the background but below the button */
+        }
+        
+        #form-container {
+            position: absolute; /* Position it absolutely to place it top right */
+            right: 20px; /* Position from the right */
+            top: 80px; /* Position from the top, considering the button's size */
+            z-index: 1000; /* Keep it above the video */
+        }
+        
+        #videoplayer {
+            width: 100%; /* Make the video take the full width of its container */
+            height: auto; /* Maintain aspect ratio */
+            max-height: 80vh; /* Set a maximum height */
+            background-color: #000; /* Background color for the video element */
+        }
+        #startButton {
+            background-color: red; /* Set the background color to red */
+            color: white; /* Set the text color to white */
+            border: none; /* Remove the border */
+            border-radius: 50%; /* Make it a circle */
+            width: 100px; /* Set a fixed width */
+            height: 100px; /* Set a fixed height to maintain aspect ratio */
+            display: flex; /* Use flexbox for centering */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            position: absolute; /* Position it absolutely within the relative parent */
+            right: 300px; /* Position from the right */
+            top: 200px; /* Position from the top */
+            cursor: pointer; /* Change the cursor to signify it's clickable */
+            padding: 0; /* Reset padding to zero */
+            overflow: hidden; /* Prevents content from spilling outside the border-radius */
+            outline: none; /* Remove outline when focused (optional) */
+            z-index: 1000; /* This value is typically high enough to be on top of other elements */
+        }
+        
+        #content {
+            display: flex; /* Use flexbox to lay out the content */
+            flex-direction: column; /* Stack children vertically */
+            align-items: center; /* Center children horizontally */
+            justify-content: center; /* Center children vertically */
+            height: 100vh; /* Take up the full height of the viewport */
+        }
+        
+        /* Additional styles for the form-container to align it properly */
+        #form-container {
+            margin-top: 250px; /* Add margin to the top to make space for the button */
+            margin-right: 50px;
         }
     </style> 
 </head>
@@ -38,6 +116,37 @@
 <!-- Button to start speech recognition -->
 <button id="startButton">Start Listening</button>
 
+
+<div id="content">
+    <div id="video-container">
+        <video id="videoplayer" width="520" height="520" controls>
+            <source id="videosource" src="" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+
+    <div id="form-container">
+        <div id="drop-area">
+            <form class="my-form">
+                <p>Upload files by clicking or dragging them into this area</p>
+                <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
+                <label class="button" for="fileElem">Select files</label>
+            </form>
+        </div>
+        <button id="uploadButton">Upload</button>
+    </div>
+</div>
+<!-- drop area for images 
+<div id="drop-area">
+    <form class="my-form">
+      <p>Upload files by clicking or dragging them into this area</p>
+      <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
+      <label class="button" for="fileElem">Select files</label>
+    </form>
+  </div>
+  <button id="uploadButton">Upload</button>
+-->
 <!-- JavaScript for handling speech recognition and communication with server -->
 <script>
     let recognition;
@@ -76,7 +185,8 @@
         fetch('/process_transcript/', {
             method: 'POST',
             body: JSON.stringify({
-                'transcript': transcript
+                'transcript': transcript,
+                'image_url': image_url  // Add image_url if it exists
             }),
             headers: {
                 'Content-Type': 'application/json',
@@ -150,6 +260,60 @@
         }
     }
 
+    //logic of droparea
+    let dropArea = document.getElementById('drop-area');
+
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+    dropArea.addEventListener(eventName, preventDefaults, false)
+    });
+
+    function preventDefaults (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    }
+
+    dropArea.addEventListener('drop', handleDrop, false);
+
+    function handleDrop(e) {
+    let dt = e.dataTransfer;
+    let files = dt.files;
+
+    handleFiles(files);
+    }
+
+    function handleFiles(files) {
+    ([...files]).forEach(uploadFile);
+    }
+
+    let image_url = '';
+
+    function uploadFile(file) {
+    let url = '/upload_image/';
+    let formData = new FormData();
+
+    formData.append('file', file);
+
+    fetch(url, {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json()) // Parse the JSON response
+    .then(data => {
+        // Assume 'image_url' is a key in the JSON response
+        image_url = data.image_url; // Save the image URL globally
+        console.log('Image uploaded successfully, URL:', image_url);
+        // You can now use image_url wherever you need it
+    })
+    .catch(() => {
+        console.error('Upload failed');
+        // Inform the user of the failure
+    });
+
+    document.getElementById('uploadButton').onclick = function() {
+    let files = document.getElementById('fileElem').files;
+    handleFiles(files);
+    };
+    }
 
 
 
@@ -181,13 +345,7 @@
         }
     </style>
 </head>
-<body>
-    <video id="videoplayer" width="520" height="520" controls>
-        <source id="videosource" src="" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    
-</body>
+
 <head>
     <style>
         #statusBar {

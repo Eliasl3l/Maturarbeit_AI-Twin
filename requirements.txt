@@ -1,13 +1,14 @@
 boto3==1.28.10
 botocore==1.31.10
+channels==4.0.0
+cloudinary==1.37.0
 Django==4.2
 elevenlabs==0.2.18
 gTTS==2.3.2
-openai==0.27.8
+openai==1.10.0
 opencv_python==4.8.1.78
 opencv_python_headless==4.8.0.74
-pygame==2.5.0
 pyngrok==7.0.0
 pyttsx3==2.90
-Requests==2.31.0
 SpeechRecognition==3.10.0
+requests==2.31.0

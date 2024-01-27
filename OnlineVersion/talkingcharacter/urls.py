@@ -8,5 +8,6 @@ urlpatterns = [
     path('process_transcript/', ProcessTranscriptView.as_view(), name='process_transcript'),
     path('get_server_status/', views.get_server_status, name='get_server_status'),
     path('webhook/', WebhookReceiver, name='webhook'),
-    path('newest_video', views.get_latest_video_link, name='newest_link')
+    path('newest_video', views.get_latest_video_link, name='newest_link'),
+    path('upload_image/', views.receive_image, name='receive_image')
 ]

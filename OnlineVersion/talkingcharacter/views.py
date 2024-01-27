@@ -3,16 +3,12 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST, require_http_methods
-from .models import ServerStatus
+from .models import ServerStatus, VideoLink
 from django.utils.decorators import method_decorator
 from django.views import View
-import json
-from .utils import video, get_chatgpt_response, Newest_link, update_video_link_and_set_done, create_video_db, ngrok_url
-import logging
-from .models import VideoLink
-from django.template.loader import render_to_string
-from channels.layers import get_channel_layer
-from asgiref.sync import async_to_sync
+import json, logging, os
+from .utils import video, get_chatgpt_response, Newest_link, update_video_link_and_set_done, create_video_db, ngrok_url, uploadImage
+from django.conf import settings
 
 status_text = "standard"
 logging.basicConfig(filename='updateview.log', level=logging.INFO)
@@ -25,14 +21,23 @@ talkURL = ""
 class ProcessTranscriptView(View):
 
     
+
     def post(self, request):
         global status_text, Newest_link, new_status, transcript, talkURL
+        standard_image = "https://res.cloudinary.com/dntslmaln/image/upload/v1706133288/Elias_Black_Background_squared_small_tc2joy.jpg"
+
         data = json.loads(request.body)
         transcript = data.get('transcript', '')
+        image_url = data.get('image_url')
+
+        # Use standard_image if image_url is None or an empty string
+        image_url = image_url if image_url not in (None, '') else standard_image
+
+
         gptResponse = get_chatgpt_response(transcript)
         print(gptResponse)
         try:
-            talk_id = video.request_video(gptResponse, self)
+            talk_id = video.request_video(gptResponse, self, image_url=image_url)
         except Exception as E:
             print(E)
             return JsonResponse({"message": "something with the video request went wrong"})
@@ -144,6 +149,27 @@ def WebhookReceiver(request):
 
         
         return JsonResponse({'status':'webhook worked', 'video_link': result_url}, safe=False) #this is sent to the D-ID Server
+
+@csrf_exempt  
+@require_POST
+def receive_image(request):
+
+    image_file = request.FILES.get('file')  # 'image' should match the name attribute in your form
+    
+    if image_file:
+        # Define the file path and name
+        file_path = os.path.join(settings.MEDIA_ROOT, image_file.name)
+
+        # Open the destination file in write-binary mode and save the image
+        with open(file_path, 'wb+') as destination:
+            for chunk in image_file.chunks():
+                destination.write(chunk)
+        
+        image_url = uploadImage(file_path)
+
+        return JsonResponse({'status':'picture upload worked worked', 'image_url':image_url}, safe=False) 
+
+
     
 
 

@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-41u!$6mi)h9o^21hn(bj&c4vzg5kzf4!p&3vn55skq$lt#s7l*'
+SECRET_KEY = secrets.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
@@ -140,7 +140,19 @@ else:
 
 #'localhost', '127.0.0.1', '.ngrok.io'
 
-#channels
+# Absolute filesystem path to the directory that will hold user-uploaded files.
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# URL that handles the media served from MEDIA_ROOT, used for managing stored files.
+MEDIA_URL = '/media/'
+
+
+
+
+
+
+
+
+#channels (for websocket, but it is not implemented)
 """
 ASGI_APPLICATION = 'talkingcharacter.routing.application'
 CHANNEL_LAYERS = {

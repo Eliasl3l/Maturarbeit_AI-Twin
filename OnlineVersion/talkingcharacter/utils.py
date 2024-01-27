@@ -3,12 +3,10 @@ import queue
 import requests
 from requests.auth import HTTPBasicAuth
 import json
-import time
 from . import secrets
-import openai
+from openai import OpenAI
 from .models import VideoLink
-
-
+import cloudinary, cloudinary.uploader, cloudinary.api
 
 
 NUM = 0
@@ -23,28 +21,35 @@ audio_queue = queue.Queue()
 
 
 
-
-openai.api_key = secrets.OPENAI_KEY
-language = 'en'
-#uses the OPENAI API to get a text response to the given prompt from the model ChatGPT 3.5 Turbo 
-def get_chatgpt_response(query):
-    chat_completion = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
+#uses the OPENAI API to get a text response to the given prompt from the model ChatGPT 3.5 Turbo
+client = OpenAI(
+    # This is the default and can be omitted
+    api_key= secrets.OPENAI_KEY,
+)
+def get_chatgpt_response(prompt):
+    chat_completion = client.chat.completions.create(
         messages=[
             {
                 "role": "user",
-                "content": query,
+                "content": prompt,
             }
-        ]
+        ],
+        model="gpt-3.5-turbo",
+        max_tokens=100
     )
+    content = chat_completion.choices[0].message.content
+
+    return content
 
 
-    return chat_completion['choices'][0]['message']['content']
+
+
+
 # this class is responsible for requesting of the video from the D-ID Server
 class video:
     videoID_URL = ""
     #this functions' code is mostly copied from https://docs.d-id.com/reference/overview  
-    def request_video(TEXT, self):
+    def request_video(TEXT, self, image_url):
         global Newest_link, ngrok_url, TOKEN_DID
         url = "https://api.d-id.com/talks"
         payload = {
@@ -56,7 +61,7 @@ class video:
                     "voice_id":"CYw3kZ02Hs0563khs1Fj"
                 }
             },
-            "source_url": "https://create-images-results.d-id.com/google-oauth2%7C113737039728929273410/upl_Q5dA_a3eLK93IE1GLtNCQ/image.jpeg",
+            "source_url": image_url,
             "webhook": f"{ngrok_url}/webhook/" 
         }
 
@@ -74,7 +79,7 @@ class video:
         response_string = response.text
         response_dict = json.loads(response_string)
         try:
-            talk_id = response_dict['id']  # replace with your ID
+            talk_id = response_dict['id'] 
         except KeyError:
             return TypeError
 
@@ -118,3 +123,28 @@ def update_video_link_and_set_done(talk_id, new_link):
         return None
 
 
+
+
+def uploadImage(image):
+    cloudinary.config( 
+    cloud_name = secrets.SDK_CLOUD_NAME, 
+    api_key = secrets.SDK_API_KEY, 
+    api_secret = secrets.SDK_API_SECRET 
+    )
+
+    # Set configuration parameter: return "https" URLs by setting secure=True  
+    config = cloudinary.config(secure=True)
+
+
+    print("Credentials: ", config.cloud_name, config.api_key)
+
+    #need to change that urgently, is a big mess if all the images have same id !!!!!!
+    # Upload the image and get its URL
+    public_id = "sheeshkebab123"
+    # Upload the image.
+    response = cloudinary.uploader.upload(image, use_filename = True, public_id = public_id)
+
+    srcURL = response['secure_url']
+    # Log the image URL to the console. 
+    print("Delivery URL: ", srcURL)
+    return srcURL
